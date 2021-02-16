@@ -5,3 +5,49 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+User.destroy_all()
+Department.destroy_all()
+Role.destroy_all()
+PASSWORD = "123"
+test_user = User.create(
+  first_name: "Stas",
+  last_name: "Anikin",
+  email: "stas@stas.com",
+  password: PASSWORD,
+  is_admin: false,
+)
+admin = User.create(
+  first_name: "admin",
+  last_name: "admin",
+  email: "admin@admin.com",
+  password: PASSWORD,
+  is_admin: true,
+)
+10.times do
+  first_name = Faker::Name.first_name
+  last_name = Faker::Name.last_name
+  User.create(
+    first_name: first_name,
+    last_name: last_name,
+    email: "#{first_name}.#{last_name}@gmail.com",
+    password: PASSWORD,
+  )
+end
+users = User.all
+
+20.times do
+  d = Department.create(
+    name: Faker::Job.field,
+  )
+  if d.valid?
+    d.roles = rand(3..5).times.map do
+      Role.new(
+        position: Faker::Job.position,
+        user: users.sample,
+      )
+    end
+  end
+end
+departments = Department.all
+roles = Role.all
+puts "Generated #{users.count} users, #{departments.count} departments, #{roles.count} roles"
