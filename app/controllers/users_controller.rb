@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find params[:id]
-    @roles = @user.roles
+    @roles = @user.roles.all
   end
 
   def create

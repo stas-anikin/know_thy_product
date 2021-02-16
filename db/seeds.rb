@@ -35,12 +35,12 @@ admin = User.create(
 end
 users = User.all
 
-20.times do
+10.times do
   d = Department.create(
     name: Faker::Job.field,
   )
   if d.valid?
-    d.roles = rand(3..5).times.map do
+    d.roles = rand(1..3).times.map do
       Role.new(
         position: Faker::Job.position,
         user: users.sample,

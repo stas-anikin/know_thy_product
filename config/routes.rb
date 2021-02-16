@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get("/home", to: "welcome#home")
   get("/about", to: "welcome#about")
   get("/", { to: "welcome#home", as: :root })
+  get("/admin/panel", to: "welcome#admin_panel")
+
   resource :session, only: [:new, :create, :destroy]
   resources :users
 end

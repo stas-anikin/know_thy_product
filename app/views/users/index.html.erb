@@ -11,7 +11,11 @@
           </div>
           <div class="card-body">
               <p class="card-text"><%= pluralize(user.roles.count, "roles") %></p>
-           
+                         <p class="card-text"><%= pluralize(user.departments.count, "departments") %></p>
+<% @roles.each do |role| %>
+              <p class="card-text"><%= role %></p>
+
+<% end %>
           </div>
           <div class="card-footer text-muted">
             <small>Joined <%= time_ago_in_words(user.created_at) %> ago</small>

@@ -1,0 +1,47 @@
+<h1>Admin page</h1>
+<p><strong>Number of users:</strong> <%= @users.count %></p>
+<p><strong>Number of departments:</strong> <%= @departments.count %></p>
+<p><strong>Number of roles:</strong> <%= @roles.count %></p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+    </tr>
+    <% @departments.each do |department| %>
+        <tr>
+            <td><%= department.id %></td>
+            <td><%= department.name %></td>
+            <td><%= department.roles.count %></td>
+        </tr>
+    <% end %>
+</table>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+    </tr>
+    <% @roles.each do |role| %>
+        <tr>
+            <td><%= role.id %></td>
+            <td><%= role.position %></td>
+        </tr>
+    <% end %>
+</table>
+<h2>Users</h2>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+    </tr>
+    <% @users.each do |user| %>
+        <tr>
+            <td><%= user.id %></td>
+            <td><%= user.first_name %></td>
+            <td><%= user.last_name %></td>
+            <td><%= user.email %></td>
+        </tr>
+    <% end %>
+</table>
