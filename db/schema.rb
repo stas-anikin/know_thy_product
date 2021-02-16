@@ -10,10 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_15_235624) do
+ActiveRecord::Schema.define(version: 2021_02_16_013655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "department_roles_assignments", force: :cascade do |t|
+    t.bigint "department_id", null: false
+    t.bigint "role_id", null: false
+    t.index ["department_id"], name: "index_department_roles_assignments_on_department_id"
+    t.index ["role_id"], name: "index_department_roles_assignments_on_role_id"
+  end
+
+  create_table "departments", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "position"
+    t.bigint "user_id", null: false
+    t.bigint "department_id", null: false
+    t.index ["department_id"], name: "index_roles_on_department_id"
+    t.index ["user_id"], name: "index_roles_on_user_id"
+  end
+
+  create_table "user_roles_assignment", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "role_id", null: false
+    t.index ["role_id"], name: "index_user_roles_assignment_on_role_id"
+    t.index ["user_id"], name: "index_user_roles_assignment_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
@@ -27,4 +53,10 @@ ActiveRecord::Schema.define(version: 2021_02_15_235624) do
     t.boolean "is_superuser", default: false
   end
 
+  add_foreign_key "department_roles_assignments", "departments"
+  add_foreign_key "department_roles_assignments", "roles"
+  add_foreign_key "roles", "departments"
+  add_foreign_key "roles", "users"
+  add_foreign_key "user_roles_assignment", "roles"
+  add_foreign_key "user_roles_assignment", "users"
 end
