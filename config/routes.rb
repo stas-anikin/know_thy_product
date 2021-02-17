@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   get("/admin/panel", to: "welcome#admin_panel")
 
   resource :session, only: [:new, :create, :destroy]
+  resources :departments
+  resources :roles
   resources :users
 end

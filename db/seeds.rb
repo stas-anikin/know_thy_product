@@ -39,12 +39,21 @@ users = User.all
   d = Department.create(
     name: Faker::Job.field,
   )
-  if d.valid?
-    d.roles = rand(1..3).times.map do
-      Role.new(
-        position: Faker::Job.position,
-        user: users.sample,
+  if d.save!
+    rand(1..3).times.map do
+      r = Role.create(
+        name: Faker::Job.position,
       )
+      DepartmentRolesAssignment.create(
+        role_id: r.id,
+        department_id: d.id,
+      )
+      if r.save!
+        UserRolesAssignment.create(
+          user_id: users.sample,
+          role_id: r.id,
+        )
+      end
     end
   end
 end

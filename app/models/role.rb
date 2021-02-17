@@ -1,4 +1,3 @@
 class Role < ApplicationRecord
-  belongs_to :department
-  belongs_to :user
+  has_many :users, through: :user_roles_assignment
 end
