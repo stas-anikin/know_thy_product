@@ -10,22 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_17_014333) do
+ActiveRecord::Schema.define(version: 2021_02_17_223514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "department_roles_assignments", force: :cascade do |t|
-    t.bigint "department_id", null: false
-    t.bigint "role_id", null: false
-    t.index ["department_id"], name: "index_department_roles_assignments_on_department_id"
-    t.index ["role_id"], name: "index_department_roles_assignments_on_role_id"
-  end
-
-  create_table "department_users_assignments", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
 
   create_table "departments", force: :cascade do |t|
     t.string "name"
@@ -33,13 +21,7 @@ ActiveRecord::Schema.define(version: 2021_02_17_014333) do
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
-  end
-
-  create_table "user_roles_assignments", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "role_id", null: false
-    t.index ["role_id"], name: "index_user_roles_assignments_on_role_id"
-    t.index ["user_id"], name: "index_user_roles_assignments_on_user_id"
+    t.integer "department_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -47,15 +29,14 @@ ActiveRecord::Schema.define(version: 2021_02_17_014333) do
     t.string "last_name"
     t.string "email"
     t.string "password_digest"
-    t.datetime "stard_date"
+    t.datetime "start_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "is_admin", default: false
     t.boolean "is_superuser", default: false
+    t.integer "role_id"
   end
 
-  add_foreign_key "department_roles_assignments", "departments"
-  add_foreign_key "department_roles_assignments", "roles"
-  add_foreign_key "user_roles_assignments", "roles"
-  add_foreign_key "user_roles_assignments", "users"
+  add_foreign_key "roles", "departments"
+  add_foreign_key "users", "roles"
 end

@@ -9,31 +9,6 @@ User.destroy_all()
 Department.destroy_all()
 Role.destroy_all()
 PASSWORD = "123"
-test_user = User.create(
-  first_name: "Stas",
-  last_name: "Anikin",
-  email: "stas@stas.com",
-  password: PASSWORD,
-  is_admin: false,
-)
-admin = User.create(
-  first_name: "admin",
-  last_name: "admin",
-  email: "admin@admin.com",
-  password: PASSWORD,
-  is_admin: true,
-)
-10.times do
-  first_name = Faker::Name.first_name
-  last_name = Faker::Name.last_name
-  User.create(
-    first_name: first_name,
-    last_name: last_name,
-    email: "#{first_name}.#{last_name}@gmail.com",
-    password: PASSWORD,
-  )
-end
-users = User.all
 
 10.times do
   d = Department.create(
@@ -43,20 +18,55 @@ users = User.all
     rand(1..3).times.map do
       r = Role.create(
         name: Faker::Job.position,
-      )
-      DepartmentRolesAssignment.create(
-        role_id: r.id,
         department_id: d.id,
       )
       if r.save!
-        UserRolesAssignment.create(
-          user_id: users.sample,
-          role_id: r.id,
-        )
+        rand(3..5).times.map do
+          first_name = Faker::Name.first_name
+          last_name = Faker::Name.last_name
+          User.create(
+            first_name: first_name,
+            last_name: last_name,
+            email: "#{first_name}.#{last_name}@gmail.com",
+            password: PASSWORD,
+            role_id: r.id,
+          )
+        end
       end
     end
   end
 end
+
+test_user = User.create(
+  first_name: "Stas",
+  last_name: "Anikin",
+  email: "stas@stas.com",
+  password: PASSWORD,
+  is_admin: false,
+  role_id: 1,
+
+)
+admin = User.create(
+  first_name: "admin",
+  last_name: "admin",
+  email: "admin@admin.com",
+  password: PASSWORD,
+  is_admin: true,
+  role_id: 1,
+)
 departments = Department.all
 roles = Role.all
+10.times do
+  first_name = Faker::Name.first_name
+  last_name = Faker::Name.last_name
+  User.create(
+    first_name: first_name,
+    last_name: last_name,
+    email: "#{first_name}.#{last_name}@gmail.com",
+    password: PASSWORD,
+    role_id: roles.sample,
+  )
+end
+
+users = User.all
 puts "Generated #{users.count} users, #{departments.count} departments, #{roles.count} roles"
