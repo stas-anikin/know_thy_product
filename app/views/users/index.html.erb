@@ -10,12 +10,9 @@
             <%= link_to user.full_name, user %>
           </div>
           <div class="card-body">
-              <p class="card-text"><%= pluralize(user.roles.count, "roles") %></p>
-                         <p class="card-text"><%= pluralize(user.departments.count, "departments") %></p>
-<% @roles.each do |role| %>
-              <p class="card-text"><%= role %></p>
+              <p class="card-text">works as <%= user.role.name %></p>
+                         <p class="card-text">in the <%= user.role.department.name %> department </p>
 
-<% end %>
           </div>
           <div class="card-footer text-muted">
             <small>Joined <%= time_ago_in_words(user.created_at) %> ago</small>
