@@ -10,7 +10,7 @@
             <%= department.name %>
           </div>
           <div class="card-body">
-              <p class="card-text"><%= pluralize(department.department_roles_assignments.count, "roles") %></p>
+              <p class="card-text"><%= pluralize(department.roles.count, "roles") %></p>
 
           </div>
         </div>

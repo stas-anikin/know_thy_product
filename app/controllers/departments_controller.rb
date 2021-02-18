@@ -9,7 +9,7 @@ class DepartmentsController < ApplicationController
 
   def show
     @department = Department.find params[:id]
-    @roles = @department.department_roles_assignments
+    @roles = @department.roles
   end
 
   private

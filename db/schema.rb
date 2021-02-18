@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_17_223514) do
+ActiveRecord::Schema.define(version: 2021_02_18_005957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,8 @@ ActiveRecord::Schema.define(version: 2021_02_17_223514) do
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
-    t.integer "department_id"
+    t.bigint "department_id"
+    t.index ["department_id"], name: "index_roles_on_department_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -34,7 +35,8 @@ ActiveRecord::Schema.define(version: 2021_02_17_223514) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "is_admin", default: false
     t.boolean "is_superuser", default: false
-    t.integer "role_id"
+    t.bigint "role_id"
+    t.index ["role_id"], name: "index_users_on_role_id"
   end
 
   add_foreign_key "roles", "departments"
