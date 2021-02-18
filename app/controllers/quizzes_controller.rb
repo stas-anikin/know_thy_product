@@ -7,6 +7,19 @@ class QuizzesController < ApplicationController
     @quizzes = Quiz.all
   end
 
+  def create
+    @quiz = Quiz.new quiz_params
+    @quiz.user = current_user
+
+    if @quiz.save
+      flash[:notice] = "Quiz created successfully."
+
+      redirect_to quiz_path(@quiz.id)
+    else
+      render :new
+    end
+  end
+
   def show
     @quiz = Quiz.find params[:id]
     @questions = @quiz.questions

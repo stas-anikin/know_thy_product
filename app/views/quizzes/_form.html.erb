@@ -10,31 +10,22 @@
                             <%= form.text_field :name, class: "form-control shadow rounded", placeholder: "Quiz name" %>
                         </div>
                     </div>
-                        <div class="form-group row">
-                        <%= form.label :description, class: "col-2 col-form-label text-light" %>
-                            <div class="col-10">
-                                <%= form.text_area :description, rows: 10, class: "form-control shadow rounded", placeholder: "Description of product" %>
-                            </div>
-                        </div>
+                        
                     <div class="form-group row">
-                        <%= form.label :price, class: "col-2 col-form-label text-light" %>
+                        <%= form.label :number_of_questions, class: "col-2 col-form-label text-light" %>
                         <div class="col-10">
-                        <%= form.text_field :price, rows: 10, class: "form-control shadow rounded", placeholder: "Product price" %>
+                        <%= form.text_field :number_of_questions, rows: 10, class: "form-control shadow rounded", placeholder: "Number of questions" %>
                         </div>
                     </div>    
                     <div>
-                    <%= form.collection_check_boxes :tag_ids, Tag.order(name: :asc), :id, :name do |t| %>
-    <%= t.check_box %>
-    <%= t.text %>
-<% end %>
-                    </div> 
+                      </div> 
                 <div class="form-group row justify-content-center">
                 <%= form.submit class: "btn btn-outline-light btn-lg" %>
                 </div>
                 <% end %>
             </div>
                 <div class="mb-3">
-                    <%= link_to "[ Cancel and return to products listing ]", products_path, class: "text-info" %>
+                    <%= link_to "[ Cancel and return to quiz index ]", quizzes_path, class: "text-info" %>
                  </div>
         </div>
     </div>
