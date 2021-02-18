@@ -15,8 +15,12 @@ created by:
           <p class='card-text'>Here are the questions for the quiz</p>
           <% quiz.questions.each do |question| %>
 
-              <p class="card-text"><%= question.name %>: <% question.answers.each do |answer| %><%= answer.name %>, <% end %>
+              <p class="card-text"><%= question.name %>: <% question.options.each do |option| %><%= option.name %>, 
               </p>
+              <% if option.answer %>
+              <p class="card-text">and the correct answer is <%= option.name %></p>
+              <% end %>
+              <% end %>
   <% end %>
 
           </div>

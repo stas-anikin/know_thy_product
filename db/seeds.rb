@@ -10,7 +10,9 @@ Department.destroy_all()
 Role.destroy_all()
 Quiz.destroy_all()
 Question.destroy_all()
+Option.destroy_all()
 Answer.destroy_all()
+
 PASSWORD = "123"
 
 10.times do
@@ -82,20 +84,23 @@ users = User.all
         name: Faker::Food.dish,
         quiz_id: z.id,
       )
-
       if q.save!
-        rand(3..5).times.map do
-          Answer.create(
+        4.times.map do
+          o = Option.create(
             name: Faker::Food.ingredient,
             question_id: q.id,
-
           )
         end
+        correct_answer = q.options[rand(0..3)]
+        Answer.create(
+          option_id: correct_answer.id,
+        )
       end
     end
   end
 end
+options = Option.all
 quizzes = Quiz.all
 questions = Question.all
 answers = Answer.all
-puts "Generated #{users.count} users, #{departments.count} departments, #{roles.count} roles, #{quizzes.count} quizzes, #{questions.count} questions, #{answers.count} answers"
+puts "Generated #{users.count} users, #{departments.count} departments, #{roles.count} roles, #{quizzes.count} quizzes, #{options.count} options, #{questions.count} questions, #{answers.count} answers"
