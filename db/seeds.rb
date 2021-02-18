@@ -8,6 +8,9 @@
 User.destroy_all()
 Department.destroy_all()
 Role.destroy_all()
+Quiz.destroy_all()
+Question.destroy_all()
+Answer.destroy_all()
 PASSWORD = "123"
 
 10.times do
@@ -67,6 +70,29 @@ roles = Role.all
     role_id: roles.sample,
   )
 end
-
 users = User.all
-puts "Generated #{users.count} users, #{departments.count} departments, #{roles.count} roles"
+5.times do
+  z = Quiz.create(
+    name: Faker::Restaurant.type,
+    user_id: rand(1..10),
+  )
+  if z.save!
+    q = Question.create(
+      name: Faker::Food.dish,
+      quiz_id: z.id,
+    )
+    if q.save!
+      rand(3..5).times.map do
+        Answer.create(
+          name: Faker::Food.ingredient,
+          question_id: q.id,
+
+        )
+      end
+    end
+  end
+end
+quizzes = Quiz.all
+questions = Question.all
+answers = Answer.all
+puts "Generated #{users.count} users, #{departments.count} departments, #{roles.count} roles, #{quizzes.count} quizzes, #{questions.count} questions, #{answers.count} answers"
