@@ -77,17 +77,20 @@ users = User.all
     user_id: rand(1..10),
   )
   if z.save!
-    q = Question.create(
-      name: Faker::Food.dish,
-      quiz_id: z.id,
-    )
-    if q.save!
-      rand(3..5).times.map do
-        Answer.create(
-          name: Faker::Food.ingredient,
-          question_id: q.id,
+    rand(10..15).times.map do
+      q = Question.create(
+        name: Faker::Food.dish,
+        quiz_id: z.id,
+      )
 
-        )
+      if q.save!
+        rand(3..5).times.map do
+          Answer.create(
+            name: Faker::Food.ingredient,
+            question_id: q.id,
+
+          )
+        end
       end
     end
   end

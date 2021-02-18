@@ -8,5 +8,11 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :departments
   resources :roles
+  resources :quizzes do
+    resources :questions, shallow: true do
+      resources :answers
+    end
+  end
+
   resources :users
 end
