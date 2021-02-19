@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <p class='card-text'>Here are the questions for the quiz</p>
                         <% @quiz.questions.each do |question| %>
-                    <p class="card-text"><%= question.name %>: <% question.answers.each do |answer| %><%= answer.name %>, <% end %></p>
+                    <p class="card-text"><%= question.name %> <% question.options.each do |option| %><%= option.name %>, <% end %></p>
           
                      <% end %>
       </div>
