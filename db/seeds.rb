@@ -74,20 +74,23 @@ roles = Role.all
 end
 users = User.all
 5.times do
+  number_of_options = rand(3..5)
+
   number_of_questions = rand(10..15)
   z = Quiz.create(
     name: Faker::Restaurant.type,
     user_id: rand(1..10),
     number_of_questions: number_of_questions,
   )
-  if z.save!rand(10..15)rand(10..15)
+  if z.save!
     z.number_of_questions.times.map do
       q = Question.create(
         name: Faker::Food.dish,
         quiz_id: z.id,
+        number_of_options: number_of_options,
       )
       if q.save!
-        4.times.map do
+        q.number_of_options.times.map do
           o = Option.create(
             name: Faker::Food.ingredient,
             question_id: q.id,
