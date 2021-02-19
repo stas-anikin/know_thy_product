@@ -1,0 +1,25 @@
+<h1 class="text-center mt-4">Questions for <%= @quiz.name %> quiz</h1>
+
+
+<div class="container">
+  <% @questions.each do |question| %>
+    <div class="row justify-content-md-center">
+      <div class="col-8 mt-4">
+        <div class="card text-center shadow mb-5 bg-white rounded">
+          <div class="card-header font-italic">
+            <%= question.name %>
+          </div>
+          <div class="card-body">
+          <p class='card-text'>Here are the questions for the quiz</p>
+<% question.options.each do |option| %>          
+<%= option.name %>
+<% if option.answer %>
+          <p class='card-text'>and the correct answer is <%= option.name %></p>
+<% end %>
+<% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

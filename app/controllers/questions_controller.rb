@@ -3,6 +3,11 @@ class QuestionsController < ApplicationController
     @question = Question.new
   end
 
+  def index
+    @quiz = Quiz.find params[:quiz_id]
+    @questions = @quiz.questions
+  end
+
   def create
     @quiz = Quiz.find params[:quiz_id]
     @question = Question.new question_params
@@ -25,6 +30,6 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:name, :answer)
+    params.require(:question).permit(:name, :option)
   end
 end
