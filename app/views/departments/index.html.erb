@@ -5,7 +5,7 @@
   <% @departments.each do |department| %>
     <div class="row justify-content-md-center">
       <div class="col-8 mt-4">
-        <div class="card text-center shadow mb-5 bg-white rounded">
+        <div>
           <div class="card-header font-italic">
             <%= link_to(department.name, department_path(department.id)) %>
           </div>
