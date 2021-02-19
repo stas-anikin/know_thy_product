@@ -1,15 +1,17 @@
-<div class="content">
+<div class="content">                
+  <%= render "shared/errors", obj: @user %>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-8">
+
+      <div class="col-md-8 m-auto">
         <div class="card">
           <div class="card-header card-header-primary">
-            <h4 class="card-title">Edit User</h4>
+            <h4 class="card-title">Enter Your Information</h4>
           </div>
         <div class="card-body">
           <%= form_with(model: @user, local: true) do |f| %>
           <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-6">
               <div class="form-group">
                 <%= f.label :first_name, class: "bmd-label-floating" %>
                 <%= f.text_field :first_name, class: "form-control", placeholder: "Enter your first name", :required => true %>
@@ -21,36 +23,44 @@
               <%= f.text_field :last_name, class: "form-control", placeholder: "Enter your last name", :required => true %>
               </div>
             </div>
+             </div>
+          <div class="row">
+            <div class="col-md-10">
+
+        <div class="form-group">
+
+          <%= f.label :email, class: "bmd-label-floating" %>
+            <%= f.email_field :email, class: "form-control", placeholder: "Enter your email address", :required => true %>
+          
           </div>
-        <div class="form-group row">
-          <%= f.label :email, class: "col-2 col-form-label text-light" %>
-          <div class="col-10"> 
-            <%= f.email_field :email, class: "form-control shadow rounded", placeholder: "Enter your email address", :required => true %>
+          
+        </div>
+             <%= f.collection_select :role_id, Role.all.order(name: :desc), :id, :name, { :prompt => true }, { class: "btn btn-outline-light" } %>
+
+          </div>
+    <div class="row">
+            <div class="col-md-12">
+
+        <div class="form-group">
+          <%= f.label :password, class: "bmd-label-floating" %>
+            <%= f.password_field :password, class: "form-control", placeholder: "Create a password", :required => true %>
           </div>
         </div>
+        </div>
+    <div class="row">
+            <div class="col-md-12">
 
-        <div class="form-group row">
-          <%= f.label :password, class: "col-2 col-form-label text-light" %>
-          <div class="col-10"> 
-            <%= f.password_field :password, class: "form-control shadow rounded", placeholder: "Create a password", :required => true %>
+        <div class="form-group">
+          <%= f.label :password_confirmation, class: "bmd-label-floating" %>
+            <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm your password", :required => true %>
           </div>
         </div>
-
-     <div class="form-group row">
-          <%= f.label :password_confirmation, class: "col-2 col-form-label text-light" %>
-          <div class="col-10"> 
-            <%= f.password_field :password_confirmation, class: "form-control shadow rounded", placeholder: "Confirm your password", :required => true %>
-          </div>
         </div>
-
-
         <div class="form-group row justify-content-center">
-          <%= f.submit(@user.new_record? ? "Sign up" : "Update account", class: "btn btn-outline-light btn-lg") %>
+          <%= f.submit(@user.new_record? ? "Sign up" : "Update account", class: "btn btn-primary btn-lg") %>
         </div>
       <% end %>
-    </div>
-    <div class="mb-3">
-      <%= link_to "[ Cancel and return to home page ]", root_path, class: "text-info" %>
-    </div>
+</div>
+    
   </div>
 </div>
