@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get("/about", to: "welcome#about")
   get("/", { to: "welcome#home", as: :root })
   get("/admin/panel", to: "welcome#admin_panel")
-  get("/dashboard", to: "page#index")
+  get("/dashboard", to: "welcome#dashboard")
 
   resource :session, only: [:new, :create, :destroy]
   resources :departments
