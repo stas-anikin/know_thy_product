@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :roles
   resources :quizzes do
     resources :questions, shallow: true do
-      resources :answers
+      resources :options
     end
   end
 

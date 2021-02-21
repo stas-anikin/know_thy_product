@@ -7,13 +7,12 @@
       <div class="col-8 mt-4">
 <div class="card">
                 <div class="card-header card-header-info">
-            <%= link_to(department.name, department_path(department.id)) %>
+            <%= link_to(department.name, department_path(department.id), class: "text-white") %>
           </div>
           <div class="card-body">
-          <p class='card-text'>Here are the roles in the department</p>
           <% department.roles.each do |role| %>
 
-              <p class="card-text"><%= role.name %>: <% role.users.each do |user| %><%= user.full_name %>, <% end %>
+              <p class="card-text"><%= role.name.pluralize %>: <% role.users.each do |user| %><%= user.full_name %>, <% end %>
               </p>
   <% end %>
 

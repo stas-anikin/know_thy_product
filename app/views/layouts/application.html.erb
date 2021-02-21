@@ -16,10 +16,18 @@
   </head>
 
   <body>
-        <div class='d-flex flex-column'>
+        <div class='d-flex flex-column min-vh-100'>
     <%= render "layouts/navbar" %>
         <%= render "layouts/messages" %>
+            <main class="flex-fill">
+
     <%= yield %>
+        </main>
+<footer id="sticky-footer" class="py-4 bg-dark text-white">
+  <div class="container text-center">
+    <small class= "text-white">Copyright &copy; Stas Anikin</small>
+  </div>
+</footer>
     </div>
   </body>
 </html>
