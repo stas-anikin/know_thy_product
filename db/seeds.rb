@@ -74,7 +74,7 @@ roles = Role.all
 end
 users = User.all
 5.times do
-  number_of_options = rand(3..5)
+  number_of_options = 4
 
   number_of_questions = rand(10..15)
   z = Quiz.create(
@@ -96,6 +96,7 @@ users = User.all
             question_id: q.id,
           )
         end
+
         correct_answer = q.options[rand(0..3)]
         Answer.create(
           option_id: correct_answer.id,
