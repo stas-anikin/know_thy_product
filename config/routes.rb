@@ -11,9 +11,8 @@ Rails.application.routes.draw do
   resources :departments
   resources :roles
   resources :quizzes do
-    resources :questions, shallow: true do
-      resources :options
-    end
+    resources :questions
+    resources :answers
   end
 
   resources :users

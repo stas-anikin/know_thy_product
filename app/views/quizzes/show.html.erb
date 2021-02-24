@@ -17,6 +17,26 @@ created by:
           
                      <% end %>
       </div>
+         <%= form_with model: [@quiz, @question], class: "shadow p-3 mb-3 bg-info rounded", local: true do |f| %>
+                        <%= render "shared/errors", obj: @question %>
+                <div class='shadow-sm p-3 mb-5 bg-white round'>
+                    <%= f.text_area :name,
+                                    cols: 50,
+                                    rows: 5,
+                                    placeholder: "What's the question?" %>
+                    <% @question.options.each do |option| %>
+
+
+
+
+
+
+
+                    <%= f.text_area :name %>
+                    <% end %>
+                </div>
+                    <%= f.submit class: "btn btn-primary" %>
+                        <% end %>
           </div>
         </div>
       </div>

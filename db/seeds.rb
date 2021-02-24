@@ -90,17 +90,14 @@ users = User.all
         number_of_options: number_of_options,
       )
       if q.save!
-        q.number_of_options.times.map do
+        4.times.map do
           o = Option.create(
             name: Faker::Food.ingredient,
             question_id: q.id,
+            is_correct: false,
           )
         end
-
-        correct_answer = q.options[rand(0..3)]
-        Answer.create(
-          option_id: correct_answer.id,
-        )
+        q.options[rand(0..3)].update(is_correct: true)
       end
     end
   end

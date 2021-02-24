@@ -1,5 +1,4 @@
 class Question < ApplicationRecord
   belongs_to :quiz
-  has_many :options
-  has_one :answer, through: :options
+  has_many :options, dependent: :destroy
 end
