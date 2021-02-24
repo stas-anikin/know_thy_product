@@ -5,6 +5,7 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   belongs_to :role
   has_many :quizzes
+  has_many :results
 
   # belongs_to :department, through: :roles
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

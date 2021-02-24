@@ -6,4 +6,5 @@ class Quiz < ApplicationRecord
                                 reject_if: proc { |att| att["name"].blank? }
 
   has_many :options, through: :questions
+  has_many :results
 end
