@@ -1,6 +1,11 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+# to allow for nested forms
+gem "cocoon"
+# to use for forms
+gem "formtastic", "~> 4.0"
+
 ruby "3.0.0"
 # to set up user permissions
 gem "cancancan", "~> 1.15"

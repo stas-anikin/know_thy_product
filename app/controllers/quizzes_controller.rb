@@ -50,5 +50,6 @@ class QuizzesController < ApplicationController
 
   def quiz_params
     params.require(:quiz).permit(:name, :number_of_questions)
+      .permit(:name, question_attributes: Question.attribute_names.map(&:to_sym).push(:_destroy))
   end
 end

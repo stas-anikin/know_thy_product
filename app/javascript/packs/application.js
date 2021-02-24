@@ -17,6 +17,7 @@ import "bootstrap"
 //= require material/bootstrap-notify
 //= require material/material-dashboard
 //= require material/demo
-
+require("jquery")
+require("@nathanvda/cocoon")
 Rails.start()
 ActiveStorage.start()
