@@ -8,6 +8,14 @@ class QuestionsController < ApplicationController
     @questions = @quiz.questions
   end
 
+  def show
+    @quiz = Quiz.find params[:quiz_id]
+    @question = Question.find params[:id]
+  end
+
+  def answer
+  end
+
   def create
     @quiz = Quiz.find params[:quiz_id]
     @question = Question.new question_params

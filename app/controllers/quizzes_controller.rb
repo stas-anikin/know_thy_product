@@ -16,7 +16,7 @@ class QuizzesController < ApplicationController
     if @quiz.save
       flash[:notice] = "Quiz created successfully."
 
-      redirect_to quiz_path(@quiz.id)
+      redirect_to quiz_questions_path(@quiz.id)
     else
       render :new
     end

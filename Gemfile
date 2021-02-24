@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem "cocoon"
 # to use for forms
 gem "formtastic", "~> 4.0"
+gem "simple_form"
 
 ruby "3.0.0"
 # to set up user permissions
