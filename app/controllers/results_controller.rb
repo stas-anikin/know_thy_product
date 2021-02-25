@@ -2,6 +2,12 @@ class ResultsController < ApplicationController
   def new
   end
 
+  def show
+    @user = current_user
+    @quiz = Quiz.find params[:quiz_id]
+    @questions = @quiz.questions
+  end
+
   def create
     @user = current_user
     @quiz = Quiz.find params[:quiz_id]

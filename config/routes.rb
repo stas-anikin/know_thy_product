@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get("/", { to: "welcome#home", as: :root })
   get("/admin/panel", to: "welcome#admin_panel")
   get("/dashboard", to: "welcome#dashboard")
+  post("quizzes/:id/answers", to: "questions#create_answer")
+
   resources :results
   resource :session, only: [:new, :create, :destroy]
   resources :departments

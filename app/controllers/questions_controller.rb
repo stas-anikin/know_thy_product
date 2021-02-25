@@ -11,9 +11,20 @@ class QuestionsController < ApplicationController
   def show
     @quiz = Quiz.find params[:quiz_id]
     @question = Question.find params[:id]
+    @answer = Answer.new
   end
 
-  def answer
+  def create_answer
+    @question = Question.find params[:id]
+    @option = Option.find params[:option_id]
+    @answer = Answer.new
+    @answer.question_id = @question.id
+    @answer.option_id = @option.id
+    if @answer.save
+      redirect_to quiz_path(@question.quiz), notice: "Your answer has been posted"
+    else
+      redirect_to quiz_path(@question.quiz), alert: "Could not post an answer"
+    end
   end
 
   def create
@@ -38,6 +49,10 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:name, :option)
+    params.require(:question).permit(:name, :options)
+  end
+
+  def answer_params
+    params.require(:answer).permit(:question_id, :option_id)
   end
 end
