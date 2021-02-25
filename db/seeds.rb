@@ -12,7 +12,7 @@ Quiz.destroy_all()
 Question.destroy_all()
 Option.destroy_all()
 Answer.destroy_all()
-
+Result.destroy_all()
 PASSWORD = "123"
 
 10.times do
@@ -84,6 +84,12 @@ users = User.all
   )
   if z.save!
     z.number_of_questions.times.map do
+      r = Result.create(
+        user_id: z.user_id,
+        quiz_id: z.id,
+        number_of_questions: number_of_questions,
+        number_of_correct_answers: rand(0..3),
+      )
       q = Question.create(
         name: Faker::Food.dish,
         quiz_id: z.id,
@@ -102,8 +108,11 @@ users = User.all
     end
   end
 end
-options = Option.all
 quizzes = Quiz.all
+
+results = Result.all
+options = Option.all
+
 questions = Question.all
 answers = Answer.all
-puts "Generated #{users.count} users, #{departments.count} departments, #{roles.count} roles, #{quizzes.count} quizzes, #{options.count} options, #{questions.count} questions, #{answers.count} answers"
+puts "Generated #{users.count} users, #{departments.count} departments, #{roles.count} roles, #{quizzes.count} quizzes, #{options.count} options, #{questions.count} questions, #{answers.count} answers, #{results.count} results"

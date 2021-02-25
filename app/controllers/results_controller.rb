@@ -3,8 +3,9 @@ class ResultsController < ApplicationController
   end
 
   def show
+    @result = Result.find params[:id]
     @user = current_user
-    @quiz = Quiz.find params[:quiz_id]
+    @quiz = @result.quiz
     @questions = @quiz.questions
   end
 

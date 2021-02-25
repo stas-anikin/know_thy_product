@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-8 mt-4">
+<div class="card">
+                <div class="card-header card-header-info text-white">
+                    <%= @result.user.full_name %>
+                </div> 
+                <div class="card-body">
+          <% @department.roles.each do |role| %>
+
+              <p class="card-text"><%= role.name.pluralize %>: <% role.users.each do |user| %><%= user.full_name %>, <% end %>
+              </p>
+  <% end %>
+
+        </div>
+    </div>
+</div>
