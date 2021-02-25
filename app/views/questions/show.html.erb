@@ -13,7 +13,7 @@
     <label for="option">What's your answer?</label>
 <%= form_with(model: [@quiz, @answer], local: true) do |form| %>
 <% @question.options.each do |option| %>          
-      <br><%= radio_button_tag "option_id", option.id, :option %> <%= option.name %>
+      <br><%= radio_button_tag "option_id", option.id, :option %> <%= option.name %> <%= option.is_correct %>
 <% if option.is_correct %>
           <p class='card-text'>    And the correct answer is <%= option.name %></p>
 <% end %>

@@ -73,10 +73,11 @@ roles = Role.all
   )
 end
 users = User.all
+number_of_questions = rand(10..15)
+
 5.times do
   number_of_options = 4
 
-  number_of_questions = rand(10..15)
   z = Quiz.create(
     name: Faker::Restaurant.type,
     user_id: rand(1..10),
@@ -108,11 +109,20 @@ users = User.all
     end
   end
 end
+questions = Question.all
+number_of_questions.times do
+  q = questions.sample
+  option = q.options[rand(0..3)]
+  a = Answer.create(
+    question_id: q.id,
+    option_id: option.id,
+    is_correct: option.is_correct,
+  )
+end
 quizzes = Quiz.all
 
 results = Result.all
 options = Option.all
 
-questions = Question.all
 answers = Answer.all
 puts "Generated #{users.count} users, #{departments.count} departments, #{roles.count} roles, #{quizzes.count} quizzes, #{options.count} options, #{questions.count} questions, #{answers.count} answers, #{results.count} results"

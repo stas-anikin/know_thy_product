@@ -18,8 +18,11 @@ class QuestionsController < ApplicationController
     @question = Question.find params[:id]
     @option = Option.find params[:option_id]
     @answer = Answer.new
-    @answer.question_id = @question.id
-    @answer.option_id = @option.id
+    @answer = Answer.create(
+      question_id: @question.id,
+      option_id: @option.id,
+      is_correct: @option.is_correct,
+    )
     if @answer.save
       redirect_to quiz_path(@question.quiz), notice: "Your answer has been posted"
     else
