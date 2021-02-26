@@ -25,13 +25,10 @@ class QuestionsController < ApplicationController
       is_correct: @option.is_correct,
     )
     @quiz = @question.quiz
-    puts "#{@answer.option_id} is what the user answered"
-
-    puts "#{@question.options.find_by(is_correct: true).id} is the correct answer"
-
+    
+    
     if @result = Result.find_by(quiz_id: @quiz.id, user_id: current_user.id)
-
-      # @result = Result.find_by(quiz_id: @quiz.id, user_id: current_user.id)
+      @answered_questions= @result.
       puts "I was found by find_by and is the result's user is #{@result.user.full_name} and the number of correct answers is #{@result.number_of_correct_answers}"
       score = @result.number_of_correct_answers
       if @answer.option_id == @question.options.find_by(is_correct: true).id

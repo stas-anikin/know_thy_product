@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_25_183336) do
+ActiveRecord::Schema.define(version: 2021_02_26_040513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,8 @@ ActiveRecord::Schema.define(version: 2021_02_25_183336) do
     t.float "score"
     t.integer "number_of_questions"
     t.integer "number_of_correct_answers"
+    t.bigint "answer_id"
+    t.index ["answer_id"], name: "index_results_on_answer_id"
     t.index ["quiz_id"], name: "index_results_on_quiz_id"
     t.index ["user_id"], name: "index_results_on_user_id"
   end
@@ -93,6 +95,7 @@ ActiveRecord::Schema.define(version: 2021_02_25_183336) do
   add_foreign_key "options", "questions"
   add_foreign_key "questions", "quizzes"
   add_foreign_key "quizzes", "users"
+  add_foreign_key "results", "answers"
   add_foreign_key "results", "quizzes"
   add_foreign_key "results", "users"
   add_foreign_key "roles", "departments"
