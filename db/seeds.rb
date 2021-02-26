@@ -120,7 +120,6 @@ number_of_questions.times do
   )
 end
 quizzes = Quiz.all
-
 results = Result.all
 options = Option.all
 
