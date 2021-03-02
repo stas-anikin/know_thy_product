@@ -9,7 +9,8 @@
       <div class="col-8 mt-4">
 <div class="card">
                 <div class="card-header card-header-success">
-            <%= question.name %>
+            <%= link_to(question.name, quiz_question_path(@quiz.id, question.id), class: "text-white") %>
+
           </div>
           <div class="card-body">
          <div class="form_row">

@@ -6,7 +6,7 @@ class User < ApplicationRecord
   belongs_to :role
   has_many :quizzes
   has_many :results
-
+  has_many :answered_questions
   # belongs_to :department, through: :roles
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }

@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_26_040513) do
+ActiveRecord::Schema.define(version: 2021_03_02_192928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answered_questions", force: :cascade do |t|
+    t.bigint "question_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "result_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_answered_questions_on_question_id"
+    t.index ["result_id"], name: "index_answered_questions_on_result_id"
+    t.index ["user_id"], name: "index_answered_questions_on_user_id"
+  end
 
   create_table "answers", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -65,6 +76,7 @@ ActiveRecord::Schema.define(version: 2021_02_26_040513) do
     t.integer "number_of_questions"
     t.integer "number_of_correct_answers"
     t.bigint "answer_id"
+    t.text "attempted_questions", default: [], array: true
     t.index ["answer_id"], name: "index_results_on_answer_id"
     t.index ["quiz_id"], name: "index_results_on_quiz_id"
     t.index ["user_id"], name: "index_results_on_user_id"
@@ -90,6 +102,9 @@ ActiveRecord::Schema.define(version: 2021_02_26_040513) do
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
+  add_foreign_key "answered_questions", "questions"
+  add_foreign_key "answered_questions", "results"
+  add_foreign_key "answered_questions", "users"
   add_foreign_key "answers", "options"
   add_foreign_key "answers", "questions"
   add_foreign_key "options", "questions"

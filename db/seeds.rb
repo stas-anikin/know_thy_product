@@ -85,11 +85,17 @@ number_of_questions = rand(10..15)
   )
   if z.save!
     z.number_of_questions.times.map do
+      answered_questions_array = []
+      z.questions.each do |question|
+        answered_questions_array << question.id
+      end
+
       r = Result.create(
         user_id: z.user_id,
         quiz_id: z.id,
         number_of_questions: number_of_questions,
         number_of_correct_answers: rand(0..3),
+        attempted_questions: answered_questions_array,
       )
       q = Question.create(
         name: Faker::Food.dish,
