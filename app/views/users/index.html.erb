@@ -1,18 +1,15 @@
 <h1 class="text-center mt-4">KTP Users</h1>
-
-
 <div class="container">
   <% @users.each do |user| %>
     <div class="row justify-content-md-center">
       <div class="col-8 mt-4">
-<div class="card">
-                <div class="card-header card-header-primary">
+        <div class="card">
+          <div class="card-header card-header-primary">
             <%= link_to user.full_name, user, class: "text-light" %>
           </div>
           <div class="card-body">
-              <p class="card-text">works as <%= user.role.name %></p>
-                         <p class="card-text">in the <%= user.role.department.name %> department </p>
-
+            <p class="card-text">works as <%= user.role.name %></p>
+            <p class="card-text">in the <%= user.role.department.name %> department </p>
           </div>
           <div class="card-footer text-muted">
             <small>Joined <%= time_ago_in_words(user.created_at) %> ago</small>

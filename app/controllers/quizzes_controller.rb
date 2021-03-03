@@ -6,6 +6,7 @@ class QuizzesController < ApplicationController
   end
 
   def index
+    p "and here are the params #{params}"
     @quizzes = Quiz.all
   end
 
@@ -23,8 +24,9 @@ class QuizzesController < ApplicationController
   end
 
   def show
+    p "and here are the params #{params}"
     @questions = @quiz.questions
-    @question = Question.new
+    @question = @questions.first
     @options = @question.options
   end
 

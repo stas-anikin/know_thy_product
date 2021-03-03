@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get("/", { to: "welcome#home", as: :root })
   get("/admin/panel", to: "welcome#admin_panel")
   get("/dashboard", to: "welcome#dashboard")
+  # get("quizzes/:id/take_quiz", to: "quizzes#show")
   post("quizzes/:id/answers", to: "questions#create_answer")
 
   resources :results

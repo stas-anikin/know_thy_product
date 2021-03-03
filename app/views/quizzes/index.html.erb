@@ -1,30 +1,26 @@
 <h1 class="text-center mt-4">Currently Available Quizzes</h1>
-
-
 <div class="container">
   <% @quizzes.each do |quiz| %>
     <div class="row justify-content-md-center">
       <div class="col-8 mt-4">
-<div class="card">
-                <div class="card-header card-header-success">
+        <div class="card">
+          <div class="card-header card-header-success">
             <%= link_to(quiz.name, quiz_questions_path(quiz.id), class: "text-white") %>
           </div>
           <div class="card-body">
-          <p class='card-text'>
-created by:
-            <%= quiz.user.full_name %>
-</p>
-          <p class='card-text'>Here are the questions for the quiz</p>
-          <% quiz.questions.each do |question| %>
-
+            <p class='card-text'>
+              created by:
+              <%= quiz.user.full_name %>
+            </p>
+            <p class='card-text'>Here are the questions for the quiz</p>
+            <% quiz.questions.each do |question| %>
               <p class="card-text"><%= question.name %>: <% question.options.each do |option| %><%= option.name %>, 
-              </p>
-              <% if option.is_correct == true %>
-              <p class="card-text">and the correct answer is <%= option.name %></p>
+                </p>
+                <% if option.is_correct == true %>
+                  <p class="card-text">and the correct answer is <%= option.name %></p>
+                <% end %>
               <% end %>
-              <% end %>
-  <% end %>
-
+            <% end %>
           </div>
         </div>
       </div>

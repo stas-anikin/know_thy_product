@@ -1,6 +1,4 @@
 <h1 class="text-center mt-4">KTP roles</h1>
-
-
 <div class="container">
   <% @roles.each do |role| %>
     <div class="row justify-content-md-center">
@@ -10,10 +8,9 @@
             <%= role.name %>
           </div>
           <div class="card-body">
-<% @roles.each do |role| %>
+            <% @roles.each do |role| %>
               <p class="card-text"><%= role %></p>
-
-<% end %>
+            <% end %>
           </div>
         </div>
       </div>
