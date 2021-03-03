@@ -17,6 +17,7 @@ class QuestionsController < ApplicationController
 
   def create_answer
     set_answer_params
+
     if @result = Result.find_by(quiz_id: @quiz.id, user_id: current_user.id)
       p @result.attempted_questions
       @result.attempted_questions.uniq
@@ -25,15 +26,11 @@ class QuestionsController < ApplicationController
       create_new_result
     end
     @result.attempted_questions << @question.id
-    if @answer.option_id == @question.options.find_by(is_correct: true).id
-      @result.number_of_correct_answers += 1
-    end
 
-    if @result.save
-      flash[:notice] = "result posted"
-      p "and the number of correct answers is now #{@result.number_of_correct_answers}"
-    else
-      flash[:alert] = "result not saved"
+    if @option.is_correct
+      @result.number_of_correct_answers += 1
+
+      @result.answered_correctly_questions << @question.id
     end
 
     attempted_questions_array = []
@@ -41,16 +38,16 @@ class QuestionsController < ApplicationController
       attempted_questions_array << question.to_i
     end
     all_questions_array = []
-    p "attempted_questions_array.uniq is #{attempted_questions_array.uniq}"
     @quiz.questions.each do |question|
       all_questions_array << question.id
     end
-    p "all_questions_array.uniq is #{all_questions_array.uniq}"
-    p "and this a the difference between the two arrays #{all_questions_array.difference(attempted_questions_array)}"
+
     @next_question = all_questions_array.difference(attempted_questions_array).sample
 
-    if @answer.save
-      redirect_to quiz_question_path(@quiz, @next_question) #, notice: "Your answer has been posted"
+    if @result.save && @next_question
+      redirect_to quiz_question_path(@quiz, @next_question), notice: "Your answer has been posted"
+    elsif @result.save && @next_question == nil
+      redirect_to result_path(@result), notice: "You have answered all the questions"
     else
       redirect_to quiz_path(@question.quiz), alert: "Could not post an answer"
     end
@@ -89,12 +86,12 @@ class QuestionsController < ApplicationController
     @user = current_user
     @option = Option.find params[:option_id]
     @question = @option.question
-    @answer = Answer.new
-    @answer = Answer.create(
-      question_id: @question.id,
-      option_id: @option.id,
-      is_correct: @option.is_correct,
-    )
+    # @answer = Answer.new
+    # @answer = Answer.create(
+    #   question_id: @question.id,
+    #   option_id: @option.id,
+    #   is_correct: @option.is_correct,
+    # )
     @quiz = @question.quiz
   end
 

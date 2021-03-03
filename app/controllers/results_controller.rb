@@ -1,4 +1,8 @@
 class ResultsController < ApplicationController
+  def index
+    @results = Result.all
+  end
+
   def new
   end
 
