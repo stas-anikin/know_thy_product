@@ -1,56 +1,64 @@
-
-     <nav class="navbar navbar-expand-lg mx-auto navbar-light  nav-fill w-100 bg-light">
-
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-
-
-<li class="nav-item active">
-                <%= link_to "Home", root_path, class: "nav-link-active text-dark" %>
-     </li>
-  <li class="nav-item active">
-<%= link_to "Departments", departments_path, class: "nav-link-active text-dark" %>
-</li>
-  <li class="nav-item active">
-<%= link_to "Quizzes", quizzes_path, class: "nav-link-active text-dark" %>
-</li>
-  <li class="nav-item active">
-<%= link_to "Results", results_path, class: "nav-link-active text-dark" %>
-</li>
-  <li class="nav-item active">
-<%= link_to "Create a Quiz", new_quiz_path, class: "nav-link-active text-dark" %>
-</li>
-  <li class="nav-item active">
-<%= link_to "Users", users_path, class: "nav-link-active text-dark" %>
-</li>
-  <li class="nav-item active">
-<%= link_to "About", about_path, class: "nav-link-active text-dark" %>
-</li>
-<% if user_signed_in? %>
-  <li class="nav-item active text-dark">
-<span>Hello, <%= current_user.full_name %></span>
-</li>
-<li class="nav-item">
-<%= link_to "Logout", session_path, method: :delete,
-                                    data: { confirm: "Are you sure you want to log out?" }, class: "nav-link-active text-dark" %>
-</li> 
-   <% else %>
- <li class="nav-item active">
-                   <%= link_to "Login", new_session_path, class: "nav-link-active text-dark" %>
-</li> 
-    
-    
-  <li class="nav-item active">
-<%= link_to "Sign Up", new_user_path, class: "nav-link-active text-dark" %>
-</li>
-
-
-   <% end %>
+<div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+  <div class="logo"><a href="home" class="simple-text logo-normal">
+      Know Thy Product
+    </a></div>
+  <div class="sidebar-wrapper">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/departments">
+          <i class="material-icons">dashboard</i>
+          <p>Departments</p>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="/roles">
+          <i class="material-icons">work</i>
+          <p>Roles</p>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="/quizzes">
+          <i class="material-icons">quiz</i>
+          <p>Quizzes</p>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="/results">
+          <i class="material-icons">grading</i>
+          <p>Results</p>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="/quizzes/new">
+          <i class="material-icons">create</i>
+          <p>New Quiz</p>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="/users">
+          <i class="material-icons">person</i>
+          <p>Users</p>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="/session/new">
+          <i class="material-icons">login</i>
+          <p>Login</p>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="/users/new">
+          <i class="material-icons">add</i>
+          <p>Sign Up</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/session" data-method="delete">
+          <i class="material-icons">logout</i>
+          <p>Logout</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="sidebar-background" style="background-image: url(../assets/img/sidebar-1.jpg) "></div>
 </div>
-</nav> 
-

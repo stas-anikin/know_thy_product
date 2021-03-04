@@ -1,4 +1,23 @@
 @import 'bootstrap/dist/css/bootstrap';
 #sticky-footer {
     flex-shrink: none;
+    display: flex;
+    justify-content: space-evenly;
   }
+  #sticky-header {
+    flex-shrink: none;
+    justify-content: space-evenly	
+  }
+  #header-name {
+    display:inline-block
+  }
+  #header-sign-up {
+    display:inline-block
+  }
+  #header-login {
+    display:inline-block
+  }
+#header {
+  display: flex;
+  justify-content: space-between;
+}

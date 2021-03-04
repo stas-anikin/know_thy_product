@@ -2,32 +2,24 @@
 <html>
   <head>
     <title>KnowThyProduct</title>
-
- <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", media: "all" %>
     <%= javascript_pack_tag "application" %>
     <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" %>
     <%= favicon_link_tag asset_path("logo.jpeg") %>
     <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" %>
-    
   </head>
-
   <body>
-        <div class='d-flex flex-column min-vh-100'>
-    <%= render "layouts/navbar" %>
-        <%= render "layouts/messages" %>
-            <main class="flex-fill">
-
-    <%= yield %>
-        </main>
-<footer id="sticky-footer" class="py-4 bg-dark text-white">
-  <div class="container text-center">
-    <small class= "text-white">Copyright &copy; Stas Anikin</small>
-  </div>
-</footer>
+    <div class='d-flex flex-column min-vh-100'>
+      <%= render "layouts/header" %>
+      <%= render "layouts/navbar" %>
+      <%= render "layouts/messages" %>
+      <main class="flex-fill">
+        <%= yield %>
+      </main>
+      <%= render "layouts/footer" %>
     </div>
   </body>
 </html>

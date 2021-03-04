@@ -7,7 +7,6 @@ class QuizzesController < ApplicationController
   end
 
   def index
-    p "and here are the params #{params}"
     @quizzes = Quiz.all
   end
 
@@ -23,7 +22,7 @@ class QuizzesController < ApplicationController
     end
 
     if @quiz.save
-      flash[:notice] = "Quiz created successfully."
+      # flash[:notice] = "Quiz created successfully."
 
       redirect_to quiz_questions_path(@quiz.id)
     else
@@ -32,7 +31,6 @@ class QuizzesController < ApplicationController
   end
 
   def show
-    p "and here are the params #{params}"
     @questions = @quiz.questions
     @question = @questions.first
     @options = @question.options
@@ -52,7 +50,7 @@ class QuizzesController < ApplicationController
     }
 
     if @quiz.update quiz_params
-      redirect_to quiz_path(@quiz.id), notice: "quiz edited successfully."
+      redirect_to quiz_path(@quiz.id)#, notice: "quiz edited successfully."
     else
       render :edit
     end
