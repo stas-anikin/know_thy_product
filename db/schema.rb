@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_02_235546) do
+ActiveRecord::Schema.define(version: 2021_03_03_181126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2021_03_02_235546) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "number_of_questions"
+    t.integer "correct_answers_to_pass", default: 0
     t.index ["user_id"], name: "index_quizzes_on_user_id"
   end
 

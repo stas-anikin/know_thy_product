@@ -1,25 +1,17 @@
-<h1 class="text-center mt-4">Questions for <%= @quiz.name %> quiz</h1>
+<h1 class="text-center mt-4">Please enter your questions, select the correct answer for each question and click on create quiz button once you are done</h1>
 <div class="container">
-  <% @questions.each do |question| %>
-    <div class="row justify-content-md-center">
-      <div class="col-8 mt-4">
-        <div class="card">
-          <div class="card-header card-header-success">
-            <%= link_to(question.name, quiz_question_path(@quiz.id, question.id), class: "text-white") %>
-          </div>
-          <div class="card-body">
-            <div class="form_row">
-              <label for="option">What's your answer?</label>
-              <% question.options.each do |option| %>
-                <br>
-                <%= radio_button_tag "option", option.name, @option == option %> <%= option.name %>
-                <% if option.is_correct %>
-                  <p class='card-text'>    And the correct answer is <%= option.name %></p>
-                <% end %>
-              <% end %></div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <%= form_with(model: @quiz, local: true) do |quiz_form| %>
+    <%= quiz_form.label :name %>
+    <%= quiz_form.text_field :name, placeholder: "name of a quiz" %>
+    <%= quiz_form.label :number_of_questions %>
+    <%= quiz_form.text_field :number_of_questions, placeholder: "number of questions" %>
+    <%= quiz_form.fields_for :questions do |question_form| %>
+      <%= question_form.label :name %>
+      <%= question_form.text_field :name, placeholder: "question goes here" %>
+      <%= question_form.fields_for :options do |option|%>
+        <%=option.text_field :name%>
+        <%= option.check_box :is_correct, {}, true, false %>
+      <%end%>
+    <% end %>
+    <%= quiz_form.submit class: "btn btn-success btn-lg" %>
   <% end %>
-</div>

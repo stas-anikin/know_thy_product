@@ -14,8 +14,9 @@ Rails.application.routes.draw do
   resources :departments
   resources :roles
   resources :quizzes do
-    resources :questions
-    resources :answers
+    resources :questions do
+      resources :options
+    end
   end
 
   resources :users

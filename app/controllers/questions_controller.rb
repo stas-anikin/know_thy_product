@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   def new
+    @quiz = Quiz.find params[:quiz_id]
     @question = Question.new
   end
 
@@ -13,6 +14,44 @@ class QuestionsController < ApplicationController
     @quiz = Quiz.find params[:quiz_id]
     @question = Question.find params[:id]
     @answer = Answer.new
+  end
+
+  def update
+    set_answer_params
+
+    if @result = Result.find_by(quiz_id: @quiz.id, user_id: current_user.id)
+      p @result.attempted_questions
+      @result.attempted_questions.uniq
+      p @result.attempted_questions.uniq
+    else
+      create_new_result
+    end
+    @result.attempted_questions << @question.id
+
+    if @option.is_correct
+      @result.number_of_correct_answers += 1
+
+      @result.answered_correctly_questions << @question.id
+    end
+
+    attempted_questions_array = []
+    @result.attempted_questions.each do |question|
+      attempted_questions_array << question.to_i
+    end
+    all_questions_array = []
+    @quiz.questions.each do |question|
+      all_questions_array << question.id
+    end
+
+    @next_question = all_questions_array.difference(attempted_questions_array).sample
+
+    if @result.save && @next_question
+      redirect_to quiz_question_path(@quiz, @next_question), notice: "Your answer has been posted"
+    elsif @result.save && @next_question == nil
+      redirect_to result_path(@result), notice: "You have answered all the questions"
+    else
+      redirect_to quiz_path(@question.quiz), alert: "Could not post an answer"
+    end
   end
 
   def create_answer
@@ -59,7 +98,7 @@ class QuestionsController < ApplicationController
     @question.quiz = @quiz
 
     if @question.save
-      redirect_to quiz_path(@quiz), notice: "question posted"
+      redirect_to quiz_question_options_path(@quiz, @question), notice: "question posted"
     else
       @question = @quiz.questions.order(created_at: :desc)
       render "/quizzes/edit"

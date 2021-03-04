@@ -9,16 +9,16 @@
         <div class="card-body">
           <div class="form_row">
             <label for="option">What's your answer?</label>
-            <%= form_with(model: [@quiz, @answer], local: true) do |form| %>
+            <%= form_with(model: [@quiz, @question], local: true) do |form| %>
               <% @question.options.each do |option| %>
                 <br>
                 <%= radio_button_tag "option_id", option.id, :option %> <%= option.name %> <%= option.is_correct %>
-                <% if option.is_correct %>
-                  <p class='card-text'>    And the correct answer is <%= option.name %></p>
-                <% end %>
               <% end %>
-              <%= form.submit "Option", class: "btn btn-primary" %>
-            <% end %>
+              <br>
+              <div class="row justify-content-center">
+                <%= form.submit "Submit", class: "btn btn-primary" %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
