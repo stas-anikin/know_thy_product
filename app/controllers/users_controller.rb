@@ -24,6 +24,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def outstanding_assignments
+  QuizAssignment.find 
+  end
+
   def update
     if @user.update(user_params)
       flash[:notice] = "Your account information was successfully updated"

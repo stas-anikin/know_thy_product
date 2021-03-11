@@ -1,0 +1,79 @@
+<%if user_signed_in?%>
+  <div class="sidebar" data-color="purple" data-background-color="white">
+    <div class="logo"><a href="/home" class="simple-text logo-normal">
+        Know Thy Product
+      </a>
+      <%= link_to(current_user.full_name, edit_user_path(current_user), class: "simple-text text-primary logo-normal") %>
+    </div>
+    <div class="sidebar-wrapper">
+      <ul class="nav">
+        <%# <li class="nav-item ">
+          <a class="nav-link" href="/session/new">
+            <i class="material-icons">login</i>
+            <p>Login</p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="/users/new">
+            <i class="material-icons">add</i>
+            <p>Sign Up</p>
+          </a>
+        </li> %>
+        <li class="nav-item">
+          <a class="nav-link" href="/departments">
+            <i class="material-icons">dashboard</i>
+            <p>Departments</p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="/roles">
+            <i class="material-icons">work</i>
+            <p>Roles</p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="/quizzes">
+            <i class="material-icons">quiz</i>
+            <p>Quizzes</p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="/quiz_assignments/new">
+            <i class="material-icons">assignment_return</i>
+            <p>Create Assignment</p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="/quiz_assignments">
+            <i class="material-icons">assignment</i>
+            <p>Quiz Assignments</p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="/results">
+            <i class="material-icons">grading</i>
+            <p>Results</p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="/quizzes/new">
+            <i class="material-icons">create</i>
+            <p>New Quiz</p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="/users">
+            <i class="material-icons">person</i>
+            <p>Users</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/session" data-method="delete">
+            <i class="material-icons">logout</i>
+            <p>Logout</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+<%end%>

@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   get("/dashboard", to: "welcome#dashboard")
   # get("quizzes/:id/take_quiz", to: "quizzes#show")
   post("quizzes/:id/answers", to: "questions#create_answer")
+  get("/todo", to: "quiz_assignments#user_assignments")
 
   resources :results
+  resources :quiz_assignments
   resource :session, only: [:new, :create, :destroy]
   resources :departments
   resources :roles

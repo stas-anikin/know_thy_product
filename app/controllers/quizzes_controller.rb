@@ -1,5 +1,6 @@
 class QuizzesController < ApplicationController
   before_action :find_quiz, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def new
     @quiz = Quiz.new
@@ -50,7 +51,7 @@ class QuizzesController < ApplicationController
     }
 
     if @quiz.update quiz_params
-      redirect_to quiz_path(@quiz.id)#, notice: "quiz edited successfully."
+      redirect_to quiz_path(@quiz.id) #, notice: "quiz edited successfully."
     else
       render :edit
     end

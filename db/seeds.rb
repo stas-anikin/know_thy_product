@@ -84,6 +84,13 @@ number_of_questions = rand(10..15)
     number_of_questions: number_of_questions,
   )
   if z.save!
+    3.times do
+      qa = QuizAssignment.create(
+        quiz_id: z.id,
+        role_id: roles.sample.id,
+      )
+    end
+
     z.number_of_questions.times.map do
       answered_questions_array = []
       z.questions.each do |question|
@@ -126,8 +133,10 @@ number_of_questions.times do
   )
 end
 quizzes = Quiz.all
+
+quizzes = Quiz.all
 results = Result.all
 options = Option.all
-
+quiz_assignments = Quiz.all
 answers = Answer.all
-puts "Generated #{users.count} users, #{departments.count} departments, #{roles.count} roles, #{quizzes.count} quizzes, #{options.count} options, #{questions.count} questions, #{answers.count} answers, #{results.count} results"
+puts "Generated #{users.count} users, #{quiz_assignments.count} quiz assignments, #{departments.count} departments, #{roles.count} roles, #{quizzes.count} quizzes, #{options.count} options, #{questions.count} questions, #{answers.count} answers, #{results.count} results"

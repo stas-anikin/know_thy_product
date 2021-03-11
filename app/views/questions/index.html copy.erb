@@ -2,7 +2,7 @@
 <div class="container">
   <% @questions.each do |question| %>
     <div class="row justify-content-md-center">
-      <div class="col-8 mt-4">
+      <div class="col-8 mt-4 offset-md-1">
         <div class="card">
           <div class="card-header card-header-success">
             <%= link_to(question.name, quiz_question_path(@quiz.id, question.id), class: "text-white") %>

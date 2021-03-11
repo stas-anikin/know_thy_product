@@ -12,14 +12,17 @@
     <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" %>
   </head>
   <body>
-    <div class='d-flex flex-column min-vh-100'>
+    <div class="wrapper">
       <%= render "layouts/header" %>
+      <%= render "layouts/sidebar" %>
       <%= render "layouts/navbar" %>
       <%= render "layouts/messages" %>
       <main class="flex-fill">
-        <%= yield %>
+        <div id="page-content">
+          <%= yield %>
+        </div>
       </main>
-      <%= render "layouts/footer" %>
-    </div>
+   
+    </div>  
   </body>
 </html>

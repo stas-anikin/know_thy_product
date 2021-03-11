@@ -1,0 +1,18 @@
+<h1 class="text-center mt-4">Current quiz assignment</h1>
+<div class="container">
+  <div class="row justify-content-md-center">
+      <div class="col-8 mt-4 offset-md-1">
+
+      <div class="card">
+        <div class="card-header card-header-success">
+          <%= @quiz_assignment.quiz.name %>
+        </div>
+        <div class="card-body">
+          <p class='card-text'>
+            has been assigned to <%=@quiz_assignment.role.name.pluralize%>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

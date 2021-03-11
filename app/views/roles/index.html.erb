@@ -1,16 +1,18 @@
-<h1 class="text-center mt-4">KTP roles</h1>
+<h1 class="text-center mt-4">Currently available roles</h1>
 <div class="container">
   <% @roles.each do |role| %>
     <div class="row justify-content-md-center">
-      <div class="col-8 mt-4">
-        <div class="card text-center shadow mb-5 bg-white rounded">
-          <div class="card-header font-italic">
-            <%= role.name %>
+      <div class="col-8 mt-4 offset-md-1">
+        <div class="card">
+          <div class="card-header card-header-success">
+            <%= link_to(role.name, role_path(role), class: "text-white") %>
           </div>
           <div class="card-body">
-            <% @roles.each do |role| %>
-              <p class="card-text"><%= role %></p>
-            <% end %>
+            <%role.users.each do |user|%>
+              <p class='card-text'>
+                <%=user.full_name%>
+              </p>
+            <%end%>
           </div>
         </div>
       </div>

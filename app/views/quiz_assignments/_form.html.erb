@@ -1,0 +1,35 @@
+<div class="content">
+  <%= render "shared/errors", obj: @quiz_assignment %>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8 offset-md-1 m-auto">
+        <div class="card">
+          <div class="card-header card-header-success">
+            <h4 class="card-title">Please assign a quiz to a specific role</h4>
+          </div>
+          <div class="card-body">
+            <%= form_with(model: @quiz_assignment, local: true) do |f| %>
+              <div class="row mx-auto">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <%= f.label :quiz, class: "bmd-label-floating" %>
+                    <%= f.collection_select :quiz_id, Quiz.all.order(name: :desc), :id, :name, { :prompt => true }, { class: "btn btn-outline-light" } %>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <%= f.label :role, class: "bmd-label-floating" %>
+                    <%= f.collection_select :role_id, Role.all.order(name: :desc), :id, :name, { :prompt => true }, { class: "btn btn-outline-light" } %>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <%= f.submit "Assign", class: "btn btn-success btn-lg mt-2" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

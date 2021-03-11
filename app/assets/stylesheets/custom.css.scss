@@ -3,10 +3,12 @@
     flex-shrink: none;
     display: flex;
     justify-content: space-evenly;
+
   }
   #sticky-header {
     flex-shrink: none;
-    justify-content: space-evenly	
+    justify-content: space-evenly;
+    
   }
   #header-name {
     display:inline-block
@@ -21,3 +23,7 @@
   display: flex;
   justify-content: space-between;
 }
+// #page-wrapper {
+//   width: 90vw;
+//   margin-left: 10vw 
+// }

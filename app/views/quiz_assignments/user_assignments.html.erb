@@ -1,0 +1,19 @@
+<h1 class="text-center mt-4">Outstanding quizzes</h1>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-8 mt-4 offset-md-1">
+      <div class="card">
+        <div class="card-header card-header-success">
+          You have the following quizzes left to take
+        </div>
+        <div class="card-body">
+          <% @quiz_assignments.each do |qa| %>
+            <p class='card-text'>
+              a quiz on <%= link_to(qa.quiz.name, quiz_path(qa.quiz.id), class: "card-text") %>
+            </p>
+          <%end%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

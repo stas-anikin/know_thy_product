@@ -7,4 +7,5 @@ class Quiz < ApplicationRecord
 
   has_many :options, through: :questions
   has_many :results
+  has_many :quiz_assignments
 end

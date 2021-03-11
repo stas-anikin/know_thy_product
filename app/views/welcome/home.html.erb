@@ -1,1 +1,13 @@
-home page
+            <%if !user_signed_in?%>
+  <li class="nav-item"  id="header-sign-up">
+    <a class="nav-link" href="/session/new">
+      <i class="material-icons">login</i>
+      <p>Login</p>
+    </a>
+  </li>
+  <a class="nav-link" href="/users/new">
+    <i class="material-icons">add</i>
+    <p>Sign Up</p>
+  </a>
+</li>
+<%end%>

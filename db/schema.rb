@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_03_181126) do
+ActiveRecord::Schema.define(version: 2021_03_10_185421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,15 @@ ActiveRecord::Schema.define(version: 2021_03_03_181126) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "number_of_options"
     t.index ["quiz_id"], name: "index_questions_on_quiz_id"
+  end
+
+  create_table "quiz_assignments", force: :cascade do |t|
+    t.bigint "quiz_id", null: false
+    t.bigint "role_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["quiz_id"], name: "index_quiz_assignments_on_quiz_id"
+    t.index ["role_id"], name: "index_quiz_assignments_on_role_id"
   end
 
   create_table "quizzes", force: :cascade do |t|
@@ -97,6 +106,8 @@ ActiveRecord::Schema.define(version: 2021_03_03_181126) do
   add_foreign_key "answers", "questions"
   add_foreign_key "options", "questions"
   add_foreign_key "questions", "quizzes"
+  add_foreign_key "quiz_assignments", "quizzes"
+  add_foreign_key "quiz_assignments", "roles"
   add_foreign_key "quizzes", "users"
   add_foreign_key "results", "answers"
   add_foreign_key "results", "quizzes"
