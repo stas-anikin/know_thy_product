@@ -1,12 +1,13 @@
 class RolesController < ApplicationController
   before_action :authenticate_user!
+  before_action :outstanding_quizzes
 
   def new
     @role = Role.new
   end
 
   def index
-    @roles = Role.all
+    @pagy, @roles = pagy(Role.all, items: 10)
   end
 
   def show

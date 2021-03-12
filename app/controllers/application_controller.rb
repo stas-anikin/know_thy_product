@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
+  include Pagy::Frontend
   before_action :outstanding_quizzes
 
   private

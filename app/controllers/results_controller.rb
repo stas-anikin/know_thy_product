@@ -1,6 +1,7 @@
 class ResultsController < ApplicationController
   def index
-    @results = Result.all
+    # @results = Result.all
+    @pagy, @results = pagy(Result.all, items: 10)
   end
 
   def new

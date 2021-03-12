@@ -7,6 +7,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 # gem "formtastic", "~> 4.0"
 # gem "simple_form"
 gem "material_icons"
+gem "pagy", "~> 3.5"
 
 ruby "3.0.0"
 # to set up user permissions

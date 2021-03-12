@@ -1,7 +1,10 @@
 <h1 class="text-center mt-4">Currently available roles</h1>
 <div class="container">
-  <% @roles.each do |role| %>
-    <div class="row justify-content-md-center">
+  <div class="row justify-content-md-center">
+    <%== pagy_bootstrap_nav(@pagy) %>
+  </div>
+  <div class="row justify-content-md-center">
+    <% @roles.each do |role| %>
       <div class="col-8 mt-4 offset-md-1">
         <div class="card">
           <div class="card-header card-header-success">
@@ -16,6 +19,6 @@
           </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>

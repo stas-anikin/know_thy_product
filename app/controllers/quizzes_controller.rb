@@ -8,23 +8,21 @@ class QuizzesController < ApplicationController
   end
 
   def index
-    @quizzes = Quiz.all
+    @pagy, @quizzes = pagy(Quiz.all, items: 10)
   end
 
   def create
     @quiz = Quiz.new quiz_params
-    @quiz.user = current_user
-    @quiz.number_of_questions.times do
+    @quiz.user = current_user #assigning the creator of the quiz
+    @quiz.number_of_questions.times do #for each of the questions we will create an instance of a question with 4 options each
       q = Question.create()
       4.times do
         q.options << Option.new
       end
-      @quiz.questions << q
+      @quiz.questions << q #we're assigning each question
     end
 
     if @quiz.save
-      # flash[:notice] = "Quiz created successfully."
-
       redirect_to quiz_questions_path(@quiz.id)
     else
       render :new

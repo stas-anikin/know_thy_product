@@ -6,7 +6,7 @@ class QuizAssignmentsController < ApplicationController
   end
 
   def index
-    @quiz_assignments = QuizAssignment.all
+    @pagy, @quiz_assignments = pagy(QuizAssignment.all, items: 10)
   end
 
   def create

@@ -14,15 +14,14 @@
   <body>
     <div class="wrapper">
       <%= render "layouts/header" %>
-      <%= render "layouts/sidebar" %>
       <%= render "layouts/navbar" %>
+      <%= render "layouts/sidebar" %>
       <%= render "layouts/messages" %>
       <main class="flex-fill">
         <div id="page-content">
           <%= yield %>
         </div>
       </main>
-   
-    </div>  
+    </div>
   </body>
 </html>

@@ -6,7 +6,8 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    # @users = User.all
+    @pagy, @users = pagy(User.all, items: 10)
   end
 
   def show
@@ -25,7 +26,7 @@ class UsersController < ApplicationController
   end
 
   def outstanding_assignments
-  QuizAssignment.find 
+    QuizAssignment.find
   end
 
   def update

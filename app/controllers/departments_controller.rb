@@ -4,7 +4,8 @@ class DepartmentsController < ApplicationController
   end
 
   def index
-    @departments = Department.all
+    # @departments = Department.all
+    @pagy, @departments = pagy(Department.all, items: 10)
   end
 
   def show

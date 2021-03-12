@@ -1,6 +1,8 @@
 <%if user_signed_in?%>
   <div class="sidebar" data-color="purple" data-background-color="white">
-    <div class="logo"><a href="/home" class="simple-text logo-normal">
+    <div class="logo">
+      <br>
+      <a href="/home" class="simple-text logo-normal">
         Know Thy Product
       </a>
       <%= link_to(current_user.full_name, edit_user_path(current_user), class: "simple-text text-primary logo-normal") %>

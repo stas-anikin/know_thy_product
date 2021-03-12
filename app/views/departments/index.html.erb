@@ -1,7 +1,10 @@
 <h1 class="text-center mt-4">KTP departments</h1>
 <div class="container">
-  <% @departments.each do |department| %>
-    <div class="row justify-content-md-center">
+  <div class="row justify-content-md-center">
+    <%== pagy_bootstrap_nav(@pagy) %>
+  </div>
+  <div class="row justify-content-md-center">
+    <% @departments.each do |department| %>
       <div class="col-8 mt-4 offset-md-1">
         <div class="card">
           <div class="card-header card-header-info">
@@ -15,6 +18,6 @@
           </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
