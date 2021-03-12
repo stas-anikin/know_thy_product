@@ -5,6 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+roles_array = ["Prep Cook", "Line Cook", "Chef de Partie", "Short Order Cook", "Banquet Cook", "Food Runner", "Server Assistant", "Restaurant Server", "Lounge Server", "Banquets Server", "Barback", "Lounge Bartender", "Banquets Bartender"]
+admin_roles_array = ["Manager", "Restaurant Chef", "Director of F&B", "Banquets Manager", "Assistant Manager", "Sous-Chef", "Executive Chef"]
+menu_array = ["Breakfast", "Restaurant Lunch", "Lounge Lunch", "Restaurant Dinner", "Lounge Dinner", "Banquets Buffet", "Valentine's Day Special", "Cocktail Party"]
+department_array = ["Banquets", "Banquets Kitchen", "Restaurant", "Lounge", "Restaurant Kitchen"]
+
 User.destroy_all()
 Department.destroy_all()
 Role.destroy_all()
@@ -15,14 +20,32 @@ Answer.destroy_all()
 Result.destroy_all()
 PASSWORD = "123"
 
-10.times do
+department_array.map do |department|
   d = Department.create(
-    name: Faker::Job.field,
+    name: department,
   )
   if d.save!
-    rand(1..3).times.map do
+    admin_roles_array.map do |role|
+      admin_role = Role.create(
+        name: role,
+        department_id: d.id,
+      )
+      if admin_role.save!
+        first_name = Faker::Name.first_name
+        last_name = Faker::Name.last_name
+        User.create(
+          first_name: first_name,
+          last_name: last_name,
+          email: "#{first_name}.#{last_name}@gmail.com",
+          password: PASSWORD,
+          role_id: admin_role.id,
+          is_admin: true,
+        )
+      end
+    end
+    rand(3..5).times.map do
       r = Role.create(
-        name: Faker::Job.position,
+        name: roles_array.sample,
         department_id: d.id,
       )
       if r.save!

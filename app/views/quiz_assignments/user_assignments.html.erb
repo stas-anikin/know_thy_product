@@ -7,10 +7,16 @@
           You have the following quizzes left to take
         </div>
         <div class="card-body">
-          <% @quiz_assignments.each do |qa| %>
+          <%if @unfinished_quizzes.length==0%>
             <p class='card-text'>
-              a quiz on <%= link_to(qa.quiz.name, quiz_path(qa.quiz.id), class: "card-text") %>
+              All done!
             </p>
+          <%else%>
+            <%@unfinished_quizzes.each do |quiz_id|%>
+              <%quiz=Quiz.find_by( id: quiz_id)%>
+              <p class='card-text'>
+                a quiz on <%= link_to(quiz.name, quiz_path(quiz.id), class: "card-text") %> menu</p>
+            <%end%>
           <%end%>
         </div>
       </div>

@@ -46,7 +46,7 @@ class QuestionsController < ApplicationController
     @next_question = all_questions_array.difference(attempted_questions_array).sample
 
     if @result.save && @next_question
-      redirect_to quiz_question_path(@quiz, @next_question), notice: "Your answer has been posted"
+      redirect_to quiz_question_path(@quiz, @next_question)
     elsif @result.save && @next_question == nil
       redirect_to result_path(@result), notice: "You have answered all the questions"
     else
@@ -55,13 +55,13 @@ class QuestionsController < ApplicationController
   end
 
   def create_answer
+    # first we need to set all the necessary params (custom method below)
     set_answer_params
-
+    # check if the user just started the quiz, if that's the case, then we'll filter out all the questions the user has already answered
     if @result = Result.find_by(quiz_id: @quiz.id, user_id: current_user.id)
-      p @result.attempted_questions
       @result.attempted_questions.uniq
-      p @result.attempted_questions.uniq
     else
+      # if the user just started the quiz, create a new instance of Result
       create_new_result
     end
     @result.attempted_questions << @question.id
@@ -125,12 +125,6 @@ class QuestionsController < ApplicationController
     @user = current_user
     @option = Option.find params[:option_id]
     @question = @option.question
-    # @answer = Answer.new
-    # @answer = Answer.create(
-    #   question_id: @question.id,
-    #   option_id: @option.id,
-    #   is_correct: @option.is_correct,
-    # )
     @quiz = @question.quiz
   end
 
