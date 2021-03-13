@@ -32,7 +32,6 @@ class QuestionsController < ApplicationController
 
     if @option.is_correct
       @result.number_of_correct_answers += 1
-
       @result.answered_correctly_questions << @question.id
     end
 

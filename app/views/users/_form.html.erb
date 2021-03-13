@@ -33,7 +33,6 @@
                 <%= f.collection_select :role_id, Role.all.order(name: :desc), :id, :name, { :prompt => true }, { class: "btn btn-outline-light" } %>
               </div>
               <div class="form-group row justify-content-center">
-                <%= link_to "Follow this link to update your password", update_password_path(@user.id), class: "btn btn-primary btn-lg" %>
                 <%= f.submit(@user.new_record? ? "Sign up" : "Update account", class: "btn btn-primary btn-lg") %>
               </div>
             <% end %>
