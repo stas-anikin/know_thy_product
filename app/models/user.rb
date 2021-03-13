@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_secure_password
   validates :first_name, presence: true
   validates :last_name, presence: true
-  belongs_to :role
+  belongs_to :role, optional: true
   has_many :quizzes
   has_many :results
   has_many :answered_questions
