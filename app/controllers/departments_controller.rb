@@ -1,4 +1,6 @@
 class DepartmentsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @department = Department.new
   end

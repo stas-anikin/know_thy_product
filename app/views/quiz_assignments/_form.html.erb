@@ -5,12 +5,15 @@
       <div class="col-md-8 offset-md-1 m-auto">
         <div class="card">
           <div class="card-header card-header-success">
-            <h4 class="card-title">Please assign a quiz to a specific role</h4>
+            <h4 class="card-title">Create assignment</h4>
           </div>
           <div class="card-body">
             <%= form_with(model: @quiz_assignment, local: true) do |f| %>
+              <div class="row mx-auto justify-content-center">
+                <p class='card-text'>Please assign a quiz to a specific role</p>
+              </div>
               <div class="row mx-auto">
-                <div class="col-md-4">
+                <div class="col-md-7">
                   <div class="form-group">
                     <%= f.label :quiz, class: "bmd-label-floating" %>
                     <%= f.collection_select :quiz_id, Quiz.all.order(name: :desc), :id, :name, { :prompt => true }, { class: "btn btn-outline-light" } %>
@@ -22,8 +25,10 @@
                     <%= f.collection_select :role_id, Role.all.order(name: :desc), :id, :name, { :prompt => true }, { class: "btn btn-outline-light" } %>
                   </div>
                 </div>
-                <div class="col-md-3">
-                  <%= f.submit "Assign", class: "btn btn-success btn-lg mt-2" %>
+                <div class="row mx-auto">
+                  <div class="col-md-2">
+                    <%= f.submit "Assign", class: "btn btn-success btn-lg mt-4" %>
+                  </div>
                 </div>
               </div>
               <div class="form-group row justify-content-center">

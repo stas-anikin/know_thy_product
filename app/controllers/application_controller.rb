@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def outstanding_quizzes
-    if user_signed_in?
+    if user_signed_in? && current_user.role
       # first we are going to find all the quizzes assigned to the role of the current user
       quiz_assignments = QuizAssignment.where(role_id: current_user.role.id)
       # then we will grab their id's and store them in an array

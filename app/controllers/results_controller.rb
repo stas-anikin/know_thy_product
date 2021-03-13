@@ -1,4 +1,6 @@
 class ResultsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @quizzes = Quiz.all
   end
@@ -11,6 +13,8 @@ class ResultsController < ApplicationController
     @user = current_user
     @quiz = @result.quiz
     @questions = @quiz.questions
+    @failed_questions_ids = @result.attempted_questions.difference(@result.answered_correctly_questions)
+    p "you have failed the following questions: #{@failed_questions}"
   end
 
   def create

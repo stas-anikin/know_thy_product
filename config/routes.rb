@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   get("/", { to: "welcome#home", as: :root })
   get("/admin/panel", to: "welcome#admin_panel")
   get("/dashboard", to: "welcome#dashboard")
-  # get("quizzes/:id/take_quiz", to: "quizzes#show")
+  get("/users/:id/password/edit", { to: "users#edit_password", as: "edit_password" })
+  patch("/users/:id/password/edit", { to: "users#update_password", as: "update_password" })
   post("quizzes/:id/answers", to: "questions#create_answer")
   get("/todo", to: "quiz_assignments#user_assignments")
 

@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @quiz = Quiz.find params[:quiz_id]
     @question = Question.new

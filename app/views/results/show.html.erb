@@ -1,13 +1,22 @@
 <div class="container">
   <div class="row justify-content-md-center">
-      <div class="col-8 mt-4 offset-md-1">
+    <div class="col-8 mt-4 offset-md-1">
       <div class="card">
         <div class="card-header card-header-info text-white">
           <%= @result.quiz.name %>
         </div>
         <div class="card-body">
-          <p class="card-text"><%= @result.user.full_name %> answered <%= @result.number_of_correct_answers %> answers out of  <%= @result.number_of_questions %> correctly
-          </p>
+          <%if @result.number_of_correct_answers<@result.quiz.correct_answers_to_pass%>
+            <p class='card-text'>Sorry, you failed the quiz</p>
+          <%else%>
+            <p class='card-text'>Well done!</p>
+          <%end%>
+          <p class="card-text"><%= @result.user.full_name %> answered <%= @result.number_of_correct_answers %> answers out of  <%= @result.number_of_questions %> correctly</p>
+          <%@failed_questions_ids.each do |question_id|%>
+            <%question=Question.find_by(id: question_id.to_i)%>
+            <p class="card-text"> The correct answer for <%= question.name%> is <%=question.options.find_by(is_correct: true).name%> and you answered
+            </p>
+          <%end%>
         </div>
       </div>
     </div>

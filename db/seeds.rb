@@ -98,13 +98,14 @@ end
 users = User.all
 number_of_questions = rand(10..15)
 
-5.times do
+menu_array.map do |menu|
   number_of_options = 4
 
   z = Quiz.create(
-    name: Faker::Restaurant.type,
-    user_id: rand(1..10),
+    name: menu,
+    user_id: users.sample.id,
     number_of_questions: number_of_questions,
+    correct_answers_to_pass: rand(7..10),
   )
   if z.save!
     3.times do
@@ -121,10 +122,10 @@ number_of_questions = rand(10..15)
       end
 
       r = Result.create(
-        user_id: z.user_id,
+        user_id: users.sample.id,
         quiz_id: z.id,
         number_of_questions: number_of_questions,
-        number_of_correct_answers: rand(0..3),
+        number_of_correct_answers: rand(6..10),
         attempted_questions: answered_questions_array,
       )
       q = Question.create(
