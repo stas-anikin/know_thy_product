@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row justify-content-md-center">
+      <div class="col-8 mt-4 offset-md-1">
+      <div class="card">
+        <div class="card-header card-header-success">
+          Ready to take the quiz on <%= @quiz.name %> menu?
+        </div>
+        <div class="card-body">
+          <p class="card-text">Hey there <%= current_user.full_name %>,
+            <%=@quiz.user.full_name%> created this quiz for you. There are <%= @quiz.number_of_questions %> questions in this quiz and you need to answer x of them correctly to pass
+            <div class="form-group row justify-content-center">
+              <%= link_to "Let's Go!", quiz_question_path(@quiz.id, @quiz.questions.first.id), class: "btn btn-success btn-lg" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

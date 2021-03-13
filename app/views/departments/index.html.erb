@@ -1,0 +1,23 @@
+<h1 class="text-center mt-4">KTP departments</h1>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <%== pagy_bootstrap_nav(@pagy) %>
+  </div>
+  <div class="row justify-content-md-center">
+    <% @departments.each do |department| %>
+      <div class="col-8 mt-4 offset-md-1">
+        <div class="card">
+          <div class="card-header card-header-info">
+            <%= link_to(department.name, department_path(department.id), class: "text-white") %>
+          </div>
+          <div class="card-body">
+            <% department.roles.each do |role| %>
+              <p class="card-text"><%= role.name.pluralize %>: <% role.users.each do |user| %><%= user.full_name %>, <% end %>
+              </p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<h1 class="text-center mt-4">Currently Available Quizzes</h1>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <%== pagy_bootstrap_nav(@pagy) %>
+  </div>
+  <div class="row justify-content-md-center">
+    <% @quizzes.each do |quiz| %>
+      <div class="col-8 mt-4 offset-md-1">
+        <div class="card">
+          <div class="card-header card-header-success">
+            <%= link_to(quiz.name, quiz_path(quiz.id), class: "text-white") %>
+          </div>
+          <div class="card-body">
+            <p class='card-text'>
+              created by:
+              <%= quiz.user.full_name %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

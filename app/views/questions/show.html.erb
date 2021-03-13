@@ -1,0 +1,27 @@
+<div class="container">
+  <%= render "shared/errors", obj: @question %>
+  <div class="row justify-content-md-center">
+      <div class="col-8 mt-4 offset-md-1">
+      <div class="card">
+        <div class="card-header card-header-success">
+          <%= @question.name %>
+        </div>
+        <div class="card-body">
+          <div class="form_row">
+            <label for="option">What's your answer?</label>
+            <%= form_with(model: [@quiz, @question], local: true) do |form| %>
+              <% @question.options.each do |option| %>
+                <br>
+                <%= radio_button_tag "option_id", option.id, :option %> <%= option.name %> <%= option.is_correct %>
+              <% end %>
+              <br>
+              <div class="row justify-content-center">
+                <%= form.submit "Submit", class: "btn btn-primary" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

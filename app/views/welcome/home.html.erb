@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row align-items-center">
+    <div class="col-md-8 offset-md-1 mx-auto">
+      <div class="card" id='homepage-card'>
+        <div class="card-header text-center card-header-primary">
+          <h4 class="card-title">Welcome to Know Thy Product!</h4>
+        </div>
+        <div class="card-body">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <h4 class='text-center mt-1'><span class="material-icons">
+                  restaurant_menu
+                </span> Simplify your next menu launch by going digital</h4>
+            </li>
+            <li class="list-group-item">
+              <h4 class='text-center mt-1'><span class="material-icons">
+                  quiz
+                </span> Easily assign quizzes to all team members of the same role</h4>
+            </li>
+            <li class="list-group-item">
+              <h4 class='text-center mt-1'><span class="material-icons">
+                  check
+                </span> Ensure accountability by keeping track of quiz completion rates</h4>
+            </li>
+          </ul>
+          <div class="row justify-content-md-center mt-2">
+            <%if !user_signed_in?%>
+              <%= link_to "Sign Up", new_user_path, class: "btn btn-primary btn-lg mx-auto" %>
+              <%= link_to "Login", new_session_path, class: "btn btn-primary btn-lg mx-auto" %>
+            <%end%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
