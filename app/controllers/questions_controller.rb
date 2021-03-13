@@ -34,7 +34,9 @@ class QuestionsController < ApplicationController
       @result.number_of_correct_answers += 1
       @result.answered_correctly_questions << @question.id
     end
-
+    if @option.is_correct == false
+      @result.wrong_answers << @option.id
+    end
     attempted_questions_array = []
     @result.attempted_questions.each do |question|
       attempted_questions_array << question.to_i

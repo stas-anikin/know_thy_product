@@ -12,9 +12,9 @@
             <p class='card-text'>Well done!</p>
           <%end%>
           <p class="card-text"><%= @result.user.full_name %> answered <%= @result.number_of_correct_answers %> answers out of  <%= @result.number_of_questions %> correctly</p>
-          <%@failed_questions_ids.each do |question_id|%>
-            <%question=Question.find_by(id: question_id.to_i)%>
-            <p class="card-text"> The correct answer for <%= question.name%> is <%=question.options.find_by(is_correct: true).name%> and you answered
+          <%@result.wrong_answers.each do |wrong_answer|%>
+            <%option=Option.find_by(id: wrong_answer.to_i)%>
+            <p class="card-text"> The correct answer for <%= option.question.name%> is <%=option.question.options.find_by(is_correct: true).name%> and you answered <%=option.name%>
             </p>
           <%end%>
         </div>
