@@ -11,9 +11,9 @@ class RolesController < ApplicationController
   end
 
   def show
-    @departments = @role.departments.order(roles_count: :desc)
-    @users = @role.users.order(roles_count: :desc)
-    @role = role.find params[:id]
+    @role = Role.find params[:id]
+
+    @users = @role.users.order(created_at: :desc)
   end
 
   private

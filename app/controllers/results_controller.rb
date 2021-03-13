@@ -1,7 +1,6 @@
 class ResultsController < ApplicationController
   def index
-    # @results = Result.all
-    @pagy, @results = pagy(Result.all, items: 10)
+    @quizzes = Quiz.all
   end
 
   def new
