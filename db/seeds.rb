@@ -10,14 +10,14 @@ admin_roles_array = ["Manager", "Restaurant Chef", "Director of F&B", "Banquets 
 menu_array = ["Breakfast", "Restaurant Lunch", "Lounge Lunch", "Restaurant Dinner", "Lounge Dinner", "Banquets Buffet", "Valentine's Day Special", "Cocktail Party"]
 department_array = ["Banquets", "Banquets Kitchen", "Restaurant", "Lounge", "Restaurant Kitchen"]
 
-User.destroy_all()
-Department.destroy_all()
-Role.destroy_all()
-Quiz.destroy_all()
-Question.destroy_all()
-Option.destroy_all()
-Answer.destroy_all()
-Result.destroy_all()
+# User.destroy_all()
+# Department.destroy_all()
+# Role.destroy_all()
+# Quiz.destroy_all()
+# Question.destroy_all()
+# Option.destroy_all()
+# Answer.destroy_all()
+# Result.destroy_all()
 PASSWORD = "123"
 
 department_array.map do |department|
