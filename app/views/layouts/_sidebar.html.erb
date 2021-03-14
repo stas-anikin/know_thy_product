@@ -8,47 +8,44 @@
     </div>
     <div class="sidebar-wrapper">
       <ul class="nav">
-        <li class="nav-item">
-          <a class="nav-link" href="/departments">
+        <li class="nav-item dropdown">
+          <a class="nav-link" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="material-icons">dashboard</i>
             <p>Departments</p>
+            <div class="ripple-container"></div>
           </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="/departments">  <i class="material-icons">dashboard</i>
+              <p>Departments Index</p>
+            </a>
+            <a class="dropdown-item" href="/roles">  <i class="material-icons">work</i>
+              <p>Roles Index</p>
+            </a>
+          </div>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="/roles">
-            <i class="material-icons">work</i>
-            <p>Roles</p>
-          </a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="/quizzes">
+        <li class="nav-item dropdown">
+          <a class="nav-link" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="material-icons">quiz</i>
             <p>Quizzes</p>
+            <div class="ripple-container"></div>
           </a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="/quiz_assignments/new">
-            <i class="material-icons">assignment_return</i>
-            <p>Create Assignment</p>
-          </a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="/quiz_assignments">
-            <i class="material-icons">assignment</i>
-            <p>Quiz Assignments</p>
-          </a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="/results">
-            <i class="material-icons">grading</i>
-            <p>Results</p>
-          </a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="/quizzes/new">
-            <i class="material-icons">create</i>
-            <p>New Quiz</p>
-          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="/quizzes">  <i class="material-icons">quiz</i>
+              <p>Quizzes Index</p>
+            </a>
+            <a class="dropdown-item" href="/quizzes/new">  <i class="material-icons">create</i>
+              <p>Create Quiz</p>
+            </a>
+            <a class="dropdown-item" href="/quiz_assignments/new">  <i class="material-icons">assignment_return</i>
+              <p>Assign Quiz</p>
+            </a>
+            <a class="dropdown-item" href="/quiz_assignments">  <i class="material-icons">assignment</i>
+              <p>Current Assignments</p>
+            </a>
+            <a class="dropdown-item" href="/results">  <i class="material-icons">grading</i>
+              <p>Results</p>
+            </a>
+          </div>
         </li>
         <li class="nav-item ">
           <a class="nav-link" href="/users">
@@ -63,6 +60,9 @@
           </a>
         </li>
       </ul>
+      <div id='sticky-footer'>
+        <h5>Stas Anikin &copy; 2021</h5>
+      </div>
     </div>
   </div>
 <%end%>

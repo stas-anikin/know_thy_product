@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get("/users/:id/password/edit", { to: "users#edit_password", as: "edit_password" })
   patch("/users/:id/password/edit", { to: "users#update_password", as: "update_password" })
   post("quizzes/:id/answers", to: "questions#create_answer")
-  get("/todo", to: "quiz_assignments#user_assignments")
+  get("/todo", to: "quiz_assignments#todo")
 
   resources :results
   resources :quiz_assignments

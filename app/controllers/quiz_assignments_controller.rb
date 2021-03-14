@@ -24,7 +24,7 @@ class QuizAssignmentsController < ApplicationController
     @quiz_assignment = QuizAssignment.find params[:id]
   end
 
-  def user_assignments
+  def todo
     # first we are going to find all the quizzes assigned to the role of the current user
     quiz_assignments = QuizAssignment.where(role_id: current_user.role.id)
     # then we will grab their id's and store them in an array
