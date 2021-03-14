@@ -12,7 +12,6 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    p params
     @quiz = Quiz.find params[:quiz_id]
     @question = Question.find params[:id]
     @answer = Answer.new
@@ -51,7 +50,7 @@ class QuestionsController < ApplicationController
     if @result.save && @next_question
       redirect_to quiz_question_path(@quiz, @next_question)
     elsif @result.save && @next_question == nil
-      redirect_to result_path(@result), notice: "You have answered all the questions"
+      redirect_to result_path(@result)
     else
       redirect_to quiz_path(@question.quiz), alert: "Could not post an answer"
     end

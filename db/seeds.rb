@@ -5,11 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-roles_array = ["Prep Cook", "Line Cook", "Chef de Partie", "Short Order Cook", "Banquet Cook", "Food Runner", "Server Assistant", "Restaurant Server", "Lounge Server", "Banquets Server", "Barback", "Lounge Bartender", "Banquets Bartender"]
-admin_roles_array = ["Manager", "Restaurant Chef", "Director of F&B", "Banquets Manager", "Assistant Manager", "Sous-Chef", "Executive Chef"]
+admin_roles_array = ["Restaurant Chef", "Department Head", "Assistant Manager", "Sous-Chef", "Executive Chef"]
 menu_array = ["Breakfast", "Restaurant Lunch", "Lounge Lunch", "Restaurant Dinner", "Lounge Dinner", "Banquets Buffet", "Valentine's Day Special", "Cocktail Party"]
-department_array = ["Banquets", "Banquets Kitchen", "Restaurant", "Lounge", "Restaurant Kitchen"]
-
+kitchen_roles_array = ["Prep Cook", "Line Cook", "Chef de Partie", "Short Order Cook"]
+service_roles_array = ["Food Runner", "Server", "Host", "Barback", "Bartender"]
+department_array = ["Banquets", "Lounge", "Restaurant"]
 User.destroy_all()
 Department.destroy_all()
 Role.destroy_all()
@@ -18,6 +18,7 @@ Question.destroy_all()
 Option.destroy_all()
 Answer.destroy_all()
 Result.destroy_all()
+QuizAssignment.destroy_all()
 PASSWORD = "123"
 
 department_array.map do |department|
@@ -27,7 +28,7 @@ department_array.map do |department|
   if d.save!
     admin_roles_array.map do |role|
       admin_role = Role.create(
-        name: role,
+        name: "#{d.name} #{role}",
         department_id: d.id,
       )
       if admin_role.save!
@@ -43,12 +44,13 @@ department_array.map do |department|
         )
       end
     end
-    rand(3..5).times.map do
-      r = Role.create(
-        name: roles_array.sample,
+    kitchen_roles_array.map do |role|
+      kitchen_role = Role.create(
+        name: "#{d.name} #{role}",
         department_id: d.id,
       )
-      if r.save!
+
+      if kitchen_role.save!
         rand(3..5).times.map do
           first_name = Faker::Name.first_name
           last_name = Faker::Name.last_name
@@ -57,7 +59,27 @@ department_array.map do |department|
             last_name: last_name,
             email: "#{first_name}.#{last_name}@gmail.com",
             password: PASSWORD,
-            role_id: r.id,
+            role_id: kitchen_role.id,
+          )
+        end
+      end
+    end
+    service_roles_array.map do |role|
+      service_role = Role.create(
+        name: "#{d.name} #{role}",
+        department_id: d.id,
+      )
+
+      if service_role.save!
+        rand(5..8).times.map do
+          first_name = Faker::Name.first_name
+          last_name = Faker::Name.last_name
+          User.create(
+            first_name: first_name,
+            last_name: last_name,
+            email: "#{first_name}.#{last_name}@gmail.com",
+            password: PASSWORD,
+            role_id: service_role.id,
           )
         end
       end
@@ -105,7 +127,7 @@ menu_array.map do |menu|
     name: menu,
     user_id: users.sample.id,
     number_of_questions: number_of_questions,
-    correct_answers_to_pass: rand(7..10),
+    correct_answers_to_pass: rand(7..9),
   )
   if z.save!
     3.times do
@@ -127,6 +149,7 @@ menu_array.map do |menu|
         number_of_questions: number_of_questions,
         number_of_correct_answers: rand(6..10),
         attempted_questions: answered_questions_array,
+
       )
       q = Question.create(
         name: Faker::Food.dish,

@@ -33,6 +33,7 @@ class QuizzesController < ApplicationController
     @questions = @quiz.questions
     @question = @questions.first
     @options = @question.options
+    @result = Result.find_by(quiz_id: @quiz.id, user_id: current_user.id)
   end
 
   def edit

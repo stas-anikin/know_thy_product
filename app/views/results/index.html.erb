@@ -26,6 +26,9 @@
                       <th class='text-center'>
                         Score
                       </th>
+                      <th class='text-center'>
+                        Pass/Fail
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -41,7 +44,18 @@
                           <%=result.number_of_questions%>
                         </td>
                         <td class="text-center">
-                          <%=(result.number_of_correct_answers.to_f / result.number_of_questions.to_f * 100.0).round(0)%>%
+                          <%= link_to((result.number_of_correct_answers.to_f / result.number_of_questions.to_f * 100.0).round(0), result_path(result.id), class: "text-center") %>
+                        </td>
+                        <td class="text-center">
+                          <%if result.number_of_correct_answers<result.quiz.correct_answers_to_pass%>
+                            <span class="material-icons">
+                              check_circle_outline
+                            </span>
+                          <%else%>
+                            <span class="material-icons">
+                              dangerous
+                            </span>
+                          <%end%>
                         </td>
                       </tr>
                     <%end%>
