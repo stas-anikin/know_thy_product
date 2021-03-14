@@ -25,13 +25,13 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-7">
                   <div class="form-group">
                     <%= f.label :email, class: "bmd-label-floating" %>
                     <%= f.email_field :email, class: "form-control", placeholder: "Enter your email address", :required => true %>
                   </div>
                 </div>
-                <%= f.collection_select :role_id, Role.all.order(name: :desc), :id, :name, { :prompt => true }, { class: "btn btn-outline-light" } %>
+                <%= f.collection_select :role_id, Role.all.order(name: :desc), :id, :name, { :prompt => true }, { class: "btn mx-auto btn-outline-light" } %>
               </div>
               <div class="row">
                 <div class="col-md-12">

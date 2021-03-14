@@ -33,27 +33,26 @@ class QuizzesController < ApplicationController
     @questions = @quiz.questions
     @question = @questions.first
     @options = @question.options
+    # we need to check if the current user has already taken this quiz
     @result = Result.find_by(quiz_id: @quiz.id, user_id: current_user.id)
   end
 
   def edit
     @question = Question.new
     @options = @question.options
-    # @answer = correct_answer
   end
 
   def update
-    @quiz.questions.each { |question|
-      question.options.each { |option|
-        option.update(is_correct: false)
-      }
-    }
-
     if @quiz.update quiz_params
-      redirect_to quiz_path(@quiz.id) #, notice: "quiz edited successfully."
+      redirect_to quiz_questions_path(@quiz.id)
     else
       render :edit
     end
+  end
+
+  def destroy
+    @quiz.destroy
+    redirect_to quizzes_path
   end
 
   private

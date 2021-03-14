@@ -30,29 +30,29 @@ class UsersController < ApplicationController
   end
 
   def update_password
+    # first we check if the current password is correct
     if @user&.authenticate params[:user][:current_password]
+      # then we take the new password and compare it with confirmation and current password
       new_password = params[:user][:new_password]
       new_password_confirmation = params[:user][:new_password_confirmation]
       new_password_valid = new_password != params[:user][:current_password]
       password_confirmed = new_password == new_password_confirmation
+      #  if everything is correct we update the passord
       if new_password_valid && password_confirmed
         if @user.update password: new_password, password_confirmation: new_password_confirmation
           flash[:notice] = "Password updated successfully"
           redirect_to root_path
         else
           render :edit_password
-          p params
         end
       else
         flash[:alert] = "Passwords do not match"
         render :edit_password
-        p params
       end
     else
       flash[:alert] = "Inccorrect Password entered"
       render :edit_password
     end
-    p params
   end
 
   def update
