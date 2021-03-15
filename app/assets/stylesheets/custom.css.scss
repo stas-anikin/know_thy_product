@@ -63,3 +63,26 @@ background-image: url(/assets/background.jpeg);
 
   margin-top: 4%;
 }
+
+
+#bg {
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+	
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}
+.wrong-answer{
+  font-weight: bold;
+  color: red;
+}
+.correct-answer{
+  color: green;
+  font-weight: bold;
+
+}
+.question{
+  font-weight: bold;
+}

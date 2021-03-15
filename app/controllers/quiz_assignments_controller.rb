@@ -14,7 +14,7 @@ class QuizAssignmentsController < ApplicationController
 
     if @quiz_assignment.save
       flash[:notice] = "Quiz assigned successfully."
-      redirect_to quiz_assignment_path(@quiz_assignment.id)
+      redirect_to quiz_assignments_path
     else
       render :new
     end

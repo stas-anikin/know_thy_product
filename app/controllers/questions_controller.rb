@@ -67,26 +67,28 @@ class QuestionsController < ApplicationController
       create_new_result
     end
     @result.attempted_questions << @question.id
-
+    # if the answer is correct, update the counter and store the question id in the answered_correctly_questions array
     if @option.is_correct
       @result.number_of_correct_answers += 1
 
       @result.answered_correctly_questions << @question.id
     end
-
+    # we're going to store all of the questions the quiz-taker has already tried in the attempted_questions_array
     attempted_questions_array = []
     @result.attempted_questions.each do |question|
       attempted_questions_array << question.to_i
     end
+    # and all the questions for the quiz will go into the all_questions_array
     all_questions_array = []
     @quiz.questions.each do |question|
       all_questions_array << question.id
     end
-
+    # lastly, we are going to find the difference between all and attempted questions and randomly pick a next question
     @next_question = all_questions_array.difference(attempted_questions_array).sample
 
     if @result.save && @next_question
       redirect_to quiz_question_path(@quiz, @next_question), notice: "Your answer has been posted"
+      # once there are no questions left we will redirect the user to result page
     elsif @result.save && @next_question == nil
       redirect_to result_path(@result), notice: "You have answered all the questions"
     else

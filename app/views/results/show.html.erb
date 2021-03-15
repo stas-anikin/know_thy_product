@@ -14,8 +14,8 @@
           <p class="card-text"><%= @result.user.full_name %> answered <%= @result.number_of_correct_answers %> answers out of  <%= @result.number_of_questions %> correctly</p>
           <%@result.wrong_answers.each do |wrong_answer|%>
             <%option=Option.find_by(id: wrong_answer.to_i)%>
-            <p class="card-text"> The correct answer for <%= option.question.name%> is <%=option.question.options.find_by(is_correct: true).name%> and you answered <%=option.name%>
-            </p>
+            <p class="card-text"> The correct answer for <span class='question'><%= option.question.name%></span> is <span class='correct-answer'><%=option.question.options.find_by(is_correct: true).name%></span> and you answered <span class='wrong-answer'><%=option.name%>
+              </span></p>
           <%end%>
         </div>
       </div>

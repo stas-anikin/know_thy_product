@@ -32,7 +32,7 @@ class QuizzesController < ApplicationController
   def show
     @questions = @quiz.questions
     @question = @questions.first
-    @options = @question.options
+    @options = @question.options.shuffle
     # we need to check if the current user has already taken this quiz
     @result = Result.find_by(quiz_id: @quiz.id, user_id: current_user.id)
   end
@@ -50,7 +50,7 @@ class QuizzesController < ApplicationController
       }
     }
     if @quiz.update quiz_params
-      redirect_to quiz_questions_path(@quiz.id)
+      redirect_to quiz_questions_path(@quiz.id), notice: "Quiz saved! "
     else
       render :edit
     end
