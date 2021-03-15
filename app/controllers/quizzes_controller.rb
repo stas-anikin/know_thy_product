@@ -43,6 +43,12 @@ class QuizzesController < ApplicationController
   end
 
   def update
+    #setting every unchecked option to false
+    @quiz.questions.each { |question|
+      question.options.each { |option|
+        option.update(is_correct: false)
+      }
+    }
     if @quiz.update quiz_params
       redirect_to quiz_questions_path(@quiz.id)
     else
