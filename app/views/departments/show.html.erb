@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row justify-content-md-center">
-      <div class="col-8 mt-4 offset-md-1">
+    <div class="col-8 mt-4 offset-md-1">
       <div class="card">
         <div class="card-header card-header-info text-white">
           <%= @department.name %>
@@ -10,6 +10,12 @@
             <p class="card-text"><%= role.name.pluralize %>: <% role.users.each do |user| %><%= user.full_name %>, <% end %>
             </p>
           <% end %>
+          <div class="form-group row justify-content-center">
+            <%if current_user.is_admin?%>
+              <%= link_to "Edit Department", edit_department_path(@department.id), class: "btn btn-warning mx-auto btn-lg" %>
+              <%= link_to "Delete Department", department_path(@department.id), method: :delete, data: {confirm: "Are you sure?"},class: "btn btn-danger mx-auto btn-lg" %>
+            <%end%>
+          </div>
         </div>
       </div>
     </div>

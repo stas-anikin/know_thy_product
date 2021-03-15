@@ -10,6 +10,12 @@
             <p class="card-text"><%=user.full_name %>
             </p>
           <%end%>
+          <div class="form-group row justify-content-center">
+            <%if current_user.is_admin?%>
+              <%= link_to "Edit Role", edit_role_path(@role.id), class: "btn btn-warning mx-auto btn-lg" %>
+              <%= link_to "Delete Role", role_path(@role.id), method: :delete, data: {confirm: "Are you sure?"},class: "btn btn-danger mx-auto btn-lg" %>
+            <%end%>
+          </div>
         </div>
       </div>
     </div>
