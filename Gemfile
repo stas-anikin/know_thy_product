@@ -1,12 +1,9 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-# to allow for nested forms
-# gem "cocoon"
-# to use for forms
-# gem "formtastic", "~> 4.0"
-# gem "simple_form"
+# styling for materialize
 gem "material_icons"
+# pagination gem
 gem "pagy", "~> 3.5"
 
 ruby "3.0.0"

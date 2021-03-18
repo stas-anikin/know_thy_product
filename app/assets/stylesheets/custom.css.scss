@@ -39,7 +39,7 @@ background: no-repeat center center fixed;
   position: absolute;
   margin: 0;
   padding: 0;
-    width: 100%;
+  width: 100%;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -58,6 +58,8 @@ background-image: url(/assets/background.jpeg);
 }
 .wrapper {
   margin-top:2%;
+  height: 100%;
+  position: static;
 }
 .alert{
 

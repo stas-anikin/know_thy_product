@@ -11,8 +11,8 @@
             <%= link_to user.full_name, user, class: "text-light" %>
           </div>
           <div class="card-body">
-            <p class="card-text">works as <%= user.role.name %></p>
-            <p class="card-text">in the <%= user.role.department.name %> department </p>
+            <p class="card-text">works as <%= user.role&.name || "Role no longer exists" %></p>
+            <p class="card-text">in the <%= user.role&.department&.name || "Department no longer exists" %> department </p>
           </div>
           <div class="card-footer text-muted">
             <small>Joined <%= time_ago_in_words(user.created_at) %> ago</small>
