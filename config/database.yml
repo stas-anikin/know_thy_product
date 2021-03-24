@@ -82,5 +82,5 @@ test:
 production:
   <<: *default
   database: know_thy_product_production
-  username: know_thy_product
+  username: <%= ENV['KNOW_THY_PRODUCT_DATABSE_USER'] %>
   password: <%= ENV['KNOW_THY_PRODUCT_DATABASE_PASSWORD'] %>
