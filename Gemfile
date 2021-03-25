@@ -6,7 +6,7 @@ gem "material_icons"
 # pagination gem
 gem "pagy", "~> 3.5"
 
-ruby "3.0.0"
+ruby "2.7.2"
 # to set up user permissions
 gem "cancancan", "~> 1.15"
 # to create seed file and populate it with fake data
