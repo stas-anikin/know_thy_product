@@ -5,8 +5,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem "material_icons"
 # pagination gem
 gem "pagy", "~> 3.5"
-# gem "ruby-magic", "~> 0.2.0"
-gem "marcel", :git => "https://github.com/rails/marcel.git", :branch => "ruby-magic"
 
 ruby "3.0.0"
 # to set up user permissions
