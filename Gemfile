@@ -6,7 +6,7 @@ gem "material_icons"
 # pagination gem
 gem "pagy", "~> 3.5"
 
-ruby "3.0.0"
+ruby "3.0.1"
 # to set up user permissions
 gem "cancancan", "~> 1.15"
 # to create seed file and populate it with fake data
@@ -35,10 +35,6 @@ gem "font-awesome-rails"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.4", require: false
 
-group :production do
-  gem 'pg'
-  gem 'puma'
-end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
